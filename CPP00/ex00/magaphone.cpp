@@ -5,8 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 19:04:32 by hheng             #+#    #+#             */
-/*   Updated: 2024/12/16 19:04:33 by hheng            ###   ########.fr       */
+/*   Created: 2024/12/30 11:45:13 by hheng             #+#    #+#             */
+/*   Updated: 2024/12/30 11:52:01 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+
+int	main(int ac, char **av)
+{
+    if (ac == 1)
+    {
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+    }
+    else
+    {
+        for (int i = 1; i < ac; ++i)
+        {
+            for (char *p = av[i]; *p != '\0'; ++p)
+            {
+                std::cout << static_cast<char>(std::toupper(*p));
+            }
+        }
+    }
+    std::cout << std::endl;
+    return 0;
+}
