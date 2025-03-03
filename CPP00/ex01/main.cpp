@@ -6,40 +6,48 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:16:49 by hheng             #+#    #+#             */
-/*   Updated: 2025/02/26 11:16:58 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/03 12:32:30 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sstream>
 #include "PhoneBook.hpp"
+#include <iostream>
+#include <string>
+#include <stdexcept>
+#include <sstream>
 
-/**
- * Generally, we don't use "std::cin >> input" when reading strings because it
- * reads until a whitespace is encountered. Use std::getline() instead.
- */
-int	main()
-{
-	PhoneBook	pb1;
-	std::string	input;
+int main() {
+    PhoneBook phoneBook;
+    std::string command;
 
-	while (true)
-	{
-		std::cout << "Please enter ADD, SEARCH or EXIT\n";
-		std::getline(std::cin, input);
-		if (input == "ADD")
-		{
-			pb1.addContacts();
-		}
-		else if (input == "SEARCH")
-		{
-			pb1.searchContacts();
-		}
-		else if (input == "EXIT")
-			return (0);
-		else if (input == "\0" || std::cin.fail())
-			return (1);
-		else
-			std::cout << "Invalid input command!\n";
-	}
-	return (0);
+    while (true) {
+        std::cout << "\nEnter command (ADD, SEARCH, EXIT): ";
+        std::getline(std::cin, command);
+
+        if (command == "ADD") {
+            phoneBook.addContact();
+        } else if (command == "SEARCH") {
+            phoneBook.searchContacts();
+            std::cout << "\nEnter index to display details: ";
+            std::string indexStr;
+            std::getline(std::cin, indexStr);
+            try {
+                std::stringstream ss(indexStr);
+                int index;
+                ss >> index;
+                if (ss.fail() || !ss.eof()) {
+                    throw std::invalid_argument("Invalid input");
+                }
+                phoneBook.displayContact(index);
+            } catch (const std::exception &e) {
+                std::cout << "Invalid index input." << std::endl;
+            }
+        } else if (command == "EXIT") {
+            std::cout << "Exiting the program." << std::endl;
+            break;
+        } else {
+            std::cout << "Invalid command. Please use ADD, SEARCH, or EXIT." << std::endl;
+        }
+    }
+    return 0;
 }

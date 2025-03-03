@@ -6,58 +6,30 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:14:04 by hheng             #+#    #+#             */
-/*   Updated: 2025/02/26 11:14:29 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/03 12:29:28 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-void	Contact::set_first_name(std::string first_name)
-{
-	this->_first_name = first_name;
-}
+Contact::Contact() {}
 
-void	Contact::set_last_name(std::string last_name)
-{
-	this->_last_name = last_name;
-}
+// Setters
+void Contact::setFirstName(const std::string &str) { firstName = str; }
+void Contact::setLastName(const std::string &str) { lastName = str; }
+void Contact::setNickname(const std::string &str) { nickname = str; }
+void Contact::setPhoneNumber(const std::string &str) { phoneNumber = str; }
+void Contact::setDarkestSecret(const std::string &str) { darkestSecret = str; }
 
-void	Contact::set_nickname(std::string nickname)
-{
-	this->_nickname = nickname;
-}
+// Getters
+std::string Contact::getFirstName() const { return firstName; }
+std::string Contact::getLastName() const { return lastName; }
+std::string Contact::getNickname() const { return nickname; }
+std::string Contact::getPhoneNumber() const { return phoneNumber; }
+std::string Contact::getDarkestSecret() const { return darkestSecret; }
 
-void	Contact::set_phone_number(std::string phone_number)
-{
-	this->_phone_number = phone_number;
-}
-
-void	Contact::set_secret(std::string secret)
-{
-	this->_secret = secret;
-}
-
-std::string	Contact::get_first_name(void)
-{
-	return (this->_first_name);
-}
-
-std::string	Contact::get_last_name(void)
-{
-	return (this->_last_name);
-}
-
-std::string	Contact::get_nickname(void)
-{
-	return (this->_nickname);
-}
-
-std::string	Contact::get_phone_number(void)
-{
-	return (this->_phone_number);
-}
-
-std::string	Contact::get_secret(void)
-{
-	return (this->_secret);
+// Check if any field is empty
+bool Contact::hasEmptyField() const {
+    return (firstName.empty() || lastName.empty() || nickname.empty() ||
+            phoneNumber.empty() || darkestSecret.empty());
 }

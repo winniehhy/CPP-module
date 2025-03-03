@@ -6,39 +6,41 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:14:44 by hheng             #+#    #+#             */
-/*   Updated: 2025/02/26 11:14:46 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/03 12:29:17 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_CPP
-# define CONTACT_CPP
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 
-/**
- * iomanip (manipulation) for setw to set the width of the next output field
- * in a stream.
- * 
- * cstdlib for exit
- */
-#include <iostream>
-#include <cstdlib>
-#include <iomanip>
-#include <algorithm>
-#include <cctype>
+#include <string>
 
-class Contact
-{
-	private:
-		std::string	firstName;
-		std::string	lastName;
-		std::string	nickname;
-		std::string	phoneNum;
-		std::string	darkestSecret;
+class Contact {
+private:
+    std::string firstName;
+    std::string lastName;
+    std::string nickname;
+    std::string phoneNumber;
+    std::string darkestSecret;
+public:
+    Contact();
 
-	public:
-		Contact(void);
-		void	addInfo(void);
-		void	printContactInfo(Contact contact);
-		void	printBriefInfo(Contact contact, int i);
+    // Setters
+    void setFirstName(const std::string &str);
+    void setLastName(const std::string &str);
+    void setNickname(const std::string &str);
+    void setPhoneNumber(const std::string &str);
+    void setDarkestSecret(const std::string &str);
+
+    // Getters
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkestSecret() const;
+
+    // Check if any field is empty
+    bool hasEmptyField() const;
 };
 
-#endif
+#endif // CONTACT_HPP

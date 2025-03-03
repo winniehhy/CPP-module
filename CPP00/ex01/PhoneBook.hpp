@@ -6,39 +6,33 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:15:33 by hheng             #+#    #+#             */
-/*   Updated: 2025/02/26 11:16:39 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/03 12:29:45 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CPP
-# define PHONEBOOK_CPP
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <string>
 
-/**
- * ENCAPSULATION AND DATA HIDING
- * 
- * "private" and "public" are access specifiers that determine the accessibility
- * of members (variables and functions) of a class from outside the class.
- * 
- * Public members of a class can be accessed directly from outside the class.
- * They are available to any function/code that has access to the object of the
- * class.
- * 
- * Private members can only be accessed or modified through member functions
- * that are public or friend functions (functions that are given special access
- * to private members).
- */
-class PhoneBook
-{
-	private:
-		Contact contacts[8];
-		int		numOfContacts;
+class PhoneBook {
+private:
+    Contact contacts[8];
+    int totalContacts;
+    
+    // Helper function to format strings
+    std::string formatField(const std::string &str) const;
+public:
+    PhoneBook();
 
-	public:
-		PhoneBook(void);
-		void	addContacts(void);
-		void	searchContacts(void);
+    // Adds a new contact. Replaces the oldest if more than 8 contacts.
+    void addContact();
+    // Displays a list of contacts.
+    void searchContacts() const;
+    // Displays detailed information of a contact.
+    void displayContact(int index) const;
 };
 
-#endif
+#endif // PHONEBOOK_HPP
+

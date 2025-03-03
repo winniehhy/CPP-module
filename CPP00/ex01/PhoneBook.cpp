@@ -6,67 +6,85 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:00:59 by hheng             #+#    #+#             */
-/*   Updated: 2025/02/26 11:16:22 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/03 12:30:05 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
-/**
- * The constructor is a special method that is invoked automatically at the
- * time an object of a class is created.
- *
- * It is used to initialize the data members of new objects generally, e.g.,
- * numOfContacts is initialized to 0 here.
- */
-PhoneBook::PhoneBook(void)
-{
-	numOfContacts = 0;
+#include <iostream>
+#include <iomanip>
+#include <stdexcept>
+
+PhoneBook::PhoneBook() : totalContacts(0) {}
+
+void PhoneBook::addContact() {
+    Contact newContact;
+    std::string input;
+
+    std::cout << "Enter first name: ";
+    std::getline(std::cin, input);
+    newContact.setFirstName(input);
+
+    std::cout << "Enter last name: ";
+    std::getline(std::cin, input);
+    newContact.setLastName(input);
+
+    std::cout << "Enter nickname: ";
+    std::getline(std::cin, input);
+    newContact.setNickname(input);
+
+    std::cout << "Enter phone number: ";
+    std::getline(std::cin, input);
+    newContact.setPhoneNumber(input);
+
+    std::cout << "Enter darkest secret: ";
+    std::getline(std::cin, input);
+    newContact.setDarkestSecret(input);
+
+    if (newContact.hasEmptyField()) {
+        std::cout << "Error: All fields must be filled." << std::endl;
+        return;
+    }
+
+    // Replace the oldest contact if there are already 8 contacts.
+    int index = totalContacts % 8;
+    contacts[index] = newContact;
+    totalContacts++;
+    std::cout << "Contact added successfully." << std::endl;
 }
 
-void	PhoneBook::addContacts(void)
-{
-	int		index;
-	Contact	*curr;
-
-	index = this->numOfContacts % 8;
-	curr = &this->contacts[index];
-	curr->addInfo();
-	this->numOfContacts++;
+std::string PhoneBook::formatField(const std::string &str) const {
+    if (str.length() > 10)
+        return str.substr(0, 9) + ".";
+    else
+        return str;
 }
 
-void	PhoneBook::searchContacts()
-{
-	Contact	contact;
-	int		max_iter;
-	std::string	index;
-
-	if (this->numOfContacts == 0)
-	{
-		std::cout << "No contact has been added\n";
-		return ;
-	}
-	std::cout << "     Index|    F_name|    L_name|  Nickname\n";
-	max_iter = this->numOfContacts;
-	if (max_iter > 8)
-		max_iter = 8;
-	for (int i = 0; i < max_iter; i++)
-	{
-		contact.printBriefInfo(this->contacts[i], i + 1);
-	}
-	while (true)
-	{
-		std::cout << "Enter the index of an entry to display contact information\n";
-		if (!std::getline(std::cin, index))
-			std::exit(1);
-		if (index.empty())
-			return ;
-		if (atoi(index.c_str()) <= max_iter && atoi(index.c_str()) > 0)
-		{
-			this->contacts->printContactInfo(contacts[atoi(index.c_str()) - 1]);
-			break ;
-		}
-		else
-			std::cout << "Index is invalid!\n";
-	}
+void PhoneBook::searchContacts() const {
+    std::cout << std::setw(10) << "Index" << "|"
+              << std::setw(10) << "First Name" << "|"
+              << std::setw(10) << "Last Name" << "|"
+              << std::setw(10) << "Nickname" << std::endl;
+    int count = (totalContacts < 8) ? totalContacts : 8;
+    for (int i = 0; i < count; i++) {
+        std::cout << std::setw(10) << i << "|"
+                  << std::setw(10) << formatField(contacts[i].getFirstName()) << "|"
+                  << std::setw(10) << formatField(contacts[i].getLastName()) << "|"
+                  << std::setw(10) << formatField(contacts[i].getNickname()) << std::endl;
+    }
 }
+
+void PhoneBook::displayContact(int index) const {
+    int count = (totalContacts < 8) ? totalContacts : 8;
+    if (index < 0 || index >= count) {
+        std::cout << "Error: Index out of range." << std::endl;
+        return;
+    }
+    const Contact &c = contacts[index];
+    std::cout << "First Name: " << c.getFirstName() << std::endl;
+    std::cout << "Last Name: " << c.getLastName() << std::endl;
+    std::cout << "Nickname: " << c.getNickname() << std::endl;
+    std::cout << "Phone Number: " << c.getPhoneNumber() << std::endl;
+    std::cout << "Darkest Secret: " << c.getDarkestSecret() << std::endl;
+}
+
