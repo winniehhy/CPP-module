@@ -7,7 +7,6 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include <iostream>
 
 #pragma once
 #ifndef __ACCOUNT_H__
@@ -39,14 +38,14 @@ public:
 	void	displayStatus( void ) const;
 
 
-// private:
+private:
 
 	static int	_nbAccounts;
 	static int	_totalAmount;
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;
 
-	static void	_displayTimestamp(void);
+	static void	_displayTimestamp( void );
 
 	int				_accountIndex;
 	int				_amount;
