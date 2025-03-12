@@ -6,14 +6,11 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:00:59 by hheng             #+#    #+#             */
-/*   Updated: 2025/03/03 12:30:05 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/12 10:22:54 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include <iostream>
-#include <iomanip>
-#include <stdexcept>
 
 PhoneBook::PhoneBook() : totalContacts(0) {}
 
