@@ -6,19 +6,20 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:16:49 by hheng             #+#    #+#             */
-/*   Updated: 2025/03/03 12:32:30 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/12 11:24:50 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include <iostream>
-#include <string>
-#include <stdexcept>
-#include <sstream>
+
+/*
+getline : read characters from input until it reached the delimiter
+
+*/
 
 int main() {
-    PhoneBook phoneBook;
-    std::string command;
+    PhoneBook phoneBook;// Create a PhoneBook object to manage contacts
+    std::string command; //store user command
 
     while (true) {
         std::cout << "\nEnter command (ADD, SEARCH, EXIT): ";

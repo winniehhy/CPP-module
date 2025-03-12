@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:14:44 by hheng             #+#    #+#             */
-/*   Updated: 2025/03/12 10:25:53 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/12 11:05:06 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 class Contact {
 private:
@@ -41,8 +42,7 @@ public:
     std::string getPhoneNumber() const;
     std::string getDarkestSecret() const;
 
-    // Check if any field is empty
     bool hasEmptyField() const;
 };
 
-#endif // CONTACT_HPP
+#endif

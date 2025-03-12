@@ -6,12 +6,13 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:00:59 by hheng             #+#    #+#             */
-/*   Updated: 2025/03/12 10:22:54 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/12 10:56:57 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+//constructor
 PhoneBook::PhoneBook() : totalContacts(0) {}
 
 void PhoneBook::addContact() {
@@ -50,6 +51,8 @@ void PhoneBook::addContact() {
     std::cout << "Contact added successfully." << std::endl;
 }
 
+//format field : is a member function  of PhoneBook
+//return type :: function Name :: parameter
 std::string PhoneBook::formatField(const std::string &str) const {
     if (str.length() > 10)
         return str.substr(0, 9) + ".";
