@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:45:13 by hheng             #+#    #+#             */
-/*   Updated: 2025/03/12 10:15:44 by hheng            ###   ########.fr       */
+/*   Updated: 2025/03/14 11:01:23 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
         {
             for (char *p = av[i]; *p != '\0'; ++p)
             {
-                std::cout <<(char) std::toupper(*p); //can use static_cast (more safe)
+                std::cout <<(char) std::toupper(*p);
             }
         }
     }
