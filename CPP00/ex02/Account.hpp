@@ -12,6 +12,10 @@
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+
 // ************************************************************************** //
 //                               Account Class                                //
 // ************************************************************************** //
@@ -23,29 +27,29 @@ public:
 
 	typedef Account		t;
 
-	static int	getNbAccounts( void );
+	static int	getNbAccounts( void ); 
 	static int	getTotalAmount( void );
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void );
+	static void	displayAccountsInfos( void ); // print overall bank info
 
-	Account( int initial_deposit );
-	~Account( void );
+	Account( int initial_deposit ); //constructor
+	~Account( void ); //destructor
 
-	void	makeDeposit( int deposit );
+	void	makeDeposit( int deposit ); //to update an account’s balance while also updating the overall static counters.
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
-	void	displayStatus( void ) const;
+	void	displayStatus( void ) const; // print individual account status
 
 
 private:
 
-	static int	_nbAccounts;
-	static int	_totalAmount;
-	static int	_totalNbDeposits;
-	static int	_totalNbWithdrawals;
+	static int	_nbAccounts; // Counts how many accounts have been created.
+	static int	_totalAmount; // The sum of all accounts’ balances
+	static int	_totalNbDeposits; //  Track the total number of deposits
+	static int	_totalNbWithdrawals; // track total number of  withdrawals across all accounts
 
-	static void	_displayTimestamp( void );
+	static void	_displayTimestamp( void ); //print current timestamp in the log
 
 	int				_accountIndex;
 	int				_amount;
