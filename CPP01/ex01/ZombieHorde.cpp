@@ -5,34 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 09:44:37 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 09:53:50 by hheng            ###   ########.fr       */
+/*   Created: 2025/04/03 14:39:59 by hheng             #+#    #+#             */
+/*   Updated: 2025/04/03 14:42:13 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include <sstream>
 
 /**
- * Creates a horde of N zombies with the given name
- * @param N Number of zombies to create
- * @param name Name to give to each zombie
- * @return Pointer to the first zombie in the horde
+ * Creates a horde of N zombies, all with the same base name.
+ *
+ * @param N Number of zombies to create.
+ * @param name Name to assign to each zombie.
+ * @return Pointer to the first zombie in the horde.
  */
 Zombie* zombieHorde(int N, std::string name) {
     if (N <= 0)
         return NULL;
-        
-    // Allocate N zombies in a single allocation
+
+    // Allocate all zombies in a single block
     Zombie* horde = new Zombie[N];
-    
-    // Initialize each zombie with the given name
+
+    // Assign names using the constructor
     for (int i = 0; i < N; i++) {
-        // Use stringstream instead of std::to_string (which is C++11)
-        std::stringstream ss;
-        ss << name << " #" << (i + 1);
-        horde[i].setName(ss.str());
+        horde[i].setName(name); 
     }
-    
-    return horde;
+
+    return horde;  // Return pointer to the first zombie
 }

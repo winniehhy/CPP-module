@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:00:27 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:00:28 by hheng            ###   ########.fr       */
+/*   Updated: 2025/04/03 15:52:52 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void HumanB::attack() const {
     if (_weapon) {
         std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
     } else {
-        std::cout << _name << " has no weapon to attack with" << std::endl;
+        std::cout << _name << " attack with no weapon" << std::endl;
     }
 }

@@ -6,22 +6,20 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:49:21 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 09:49:29 by hheng            ###   ########.fr       */
+/*   Updated: 2025/04/03 15:20:42 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 
+//pointer = address
+//reference = nickname
+
 int main()
 {
-    // Initialize the string variable
     std::string str = "HI THIS IS BRAIN";
-    
-    // Declare a pointer to the string
     std::string* stringPTR = &str;
-    
-    // Declare a reference to the string
     std::string& stringREF = str;
     
     // Print memory addresses
@@ -36,3 +34,4 @@ int main()
     
     return 0;
 }
+

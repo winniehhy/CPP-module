@@ -1,4 +1,4 @@
-NAME = zombieHorde
+NAME = Moar_brainz
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -21,5 +21,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
 
 .PHONY: all clean fclean re

@@ -1,16 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/01 09:48:51 by hheng             #+#    #+#              #
-#    Updated: 2025/04/01 09:49:18 by hheng            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = brain
+NAME = HI_THIS_IS_BRAIN
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -33,5 +21,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
 
 .PHONY: all clean fclean re
