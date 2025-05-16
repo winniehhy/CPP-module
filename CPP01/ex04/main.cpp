@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:05:14 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/03 16:08:57 by hheng            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:59:16 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    // Create a replacer object
     Replacer replacer(filename, s1, s2);
-    
-    // Perform the replacement
     if (!replacer.replace()) {
         return 1;
     }

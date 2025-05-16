@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Replacer.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:07:22 by hheng             #+#    #+#             */
-/*   Updated: 2025/05/16 15:42:16 by hheng            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:58:50 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,11 @@ Replacer::~Replacer() {
 }
 
 bool Replacer::replace() {
-    // Check if strings are empty
-    if (_s1.empty()) {
-        std::cerr << "Error: Search string cannot be empty" << std::endl;
-        return false;
-    }
     
     // Open the input file
     std::ifstream inFile(_filename.c_str());
     if (!inFile.is_open()) {
         std::cerr << "Error: Could not open file " << _filename << std::endl;
-        return false;
-    }
-
-    // permission handle
-    if (inFile.fail()) {
-        std::cerr << "Error: Permission denied reading from " << _filename << std::endl;
-        inFile.close();
         return false;
     }
     
@@ -49,7 +37,7 @@ bool Replacer::replace() {
         return false;
     }
 
-    // Check if we can write to the output file
+    // write permission denied
     if (outFile.fail()) {
         std::cerr << "Error: Permission denied writing to " << outFilename << std::endl;
         inFile.close();
@@ -70,10 +58,9 @@ bool Replacer::replace() {
             modifiedLine.append(line, startPos, foundPos - startPos);
             modifiedLine.append(_s2);
             startPos = foundPos + _s1.length();
-            replacementFound = true; // Mark that a replacement was found
+            replacementFound = true;
         }
         
-        // Add any remaining content after the last occurrence
         modifiedLine.append(line, startPos, std::string::npos);
         outFile << modifiedLine;
         
@@ -88,7 +75,7 @@ bool Replacer::replace() {
 
     if (!replacementFound) {
         std::cerr << "Error: String '" << _s1 << "' not found in " << _filename << std::endl;
-        std::remove(outFilename.c_str()); // Remove the output file since no changes were made
+        std::remove(outFilename.c_str());
         return false;
     }
     
