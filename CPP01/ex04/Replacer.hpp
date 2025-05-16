@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:07:08 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:10:17 by hheng            ###   ########.fr       */
+/*   Updated: 2025/04/03 16:09:38 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <string>
 #include <fstream>
+#include <iostream>
+#include <sstream>
 
 class Replacer {
 private:

@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:05:14 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:09:47 by hheng            ###   ########.fr       */
+/*   Updated: 2025/04/03 16:08:57 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 int main(int argc, char *argv[])
 {
-    // Check if we have the correct number of arguments
     if (argc != 4) {
         std::cerr << "Error: Invalid number of arguments" << std::endl;
         std::cerr << "Usage: " << argv[0] << " <filename> <string_to_find> <string_to_replace>" << std::endl;
         return 1;
     }
 
-    // Get the arguments
     std::string filename = argv[1];
     std::string s1 = argv[2];
     std::string s2 = argv[3];
@@ -38,7 +36,7 @@ int main(int argc, char *argv[])
     
     // Perform the replacement
     if (!replacer.replace()) {
-        return 1; // Error message already printed by replace()
+        return 1;
     }
     
     std::cout << "Replacement completed successfully. Result saved to " << filename << ".replace" << std::endl;
