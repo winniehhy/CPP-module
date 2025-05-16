@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:19:35 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:19:40 by hheng            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:31:57 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void Harl::error(void) {
 }
 
 void Harl::complain(std::string level) {
-    // Define an array of pointers to member functions
+    //1. include all member function into array
     void (Harl::*functionPointers[])() = {
         &Harl::debug,
         &Harl::info,
@@ -46,7 +46,7 @@ void Harl::complain(std::string level) {
         &Harl::error
     };
     
-    // Define the level strings for mapping
+    // 2. Matching strings for each level
     std::string levels[] = {
         "DEBUG",
         "INFO",
@@ -54,14 +54,14 @@ void Harl::complain(std::string level) {
         "ERROR"
     };
     
-    // Find the matching level and call the appropriate function
+    // 3. Match the function to its respective complaints description
     for (int i = 0; i < 4; i++) {
         if (level == levels[i]) {
-            (this->*functionPointers[i])();
+            (this->*functionPointers[i])(); // bind pointer to the current object ; eg this-> info
             return;
         }
     }
     
-    // If we get here, the level wasn't recognized
+
     std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }

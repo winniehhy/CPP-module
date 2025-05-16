@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:23:18 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:23:35 by hheng            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:42:42 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ private:
     void warning(void);
     void error(void);
     
-    // Helper method to convert level string to enum
     int getLevelIndex(std::string level);
 
 public:

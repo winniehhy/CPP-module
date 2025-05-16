@@ -6,7 +6,7 @@
 /*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:22:24 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:25:14 by hheng            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:53:04 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void Harl::error(void) {
     std::cout << std::endl;
 }
 
+// convert string into enum form 
 int Harl::getLevelIndex(std::string level) {
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     
@@ -66,18 +67,18 @@ void Harl::complain(std::string level) {
 void Harl::filterComplain(std::string minLevel) {
     int minLevelIndex = getLevelIndex(minLevel);
     
-    // Use switch statement as required by the exercise
+    // Use switch statement 
     switch (minLevelIndex) {
-        case 0: // DEBUG
+        case 0:
             debug();
-            /* fall through */
-        case 1: // INFO
+             // fall through
+        case 1:
             info();
-            /* fall through */
-        case 2: // WARNING
+            // fall through
+        case 2:
             warning();
-            /* fall through */
-        case 3: // ERROR
+            // fall through
+        case 3:
             error();
             break;
         default:
