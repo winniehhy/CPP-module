@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:33:09 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:33:11 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 19:19:53 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
+
+#include <iostream>
 
 class Fixed {
 private:
@@ -19,7 +21,6 @@ private:
     static const int _fractionalBits = 8;
 
 public:
-    // Default constructor
     Fixed();
     
     // Copy constructor
