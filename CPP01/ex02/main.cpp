@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:49:21 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/03 15:20:42 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:56:25 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 
-//pointer = address
-//reference = nickname
+//pointer = hold address , can change when pointeing others
+//reference = nickname, cannot change to refer to another variable
 
 int main()
 {

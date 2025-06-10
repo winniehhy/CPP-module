@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:22:24 by hheng             #+#    #+#             */
-/*   Updated: 2025/05/16 16:53:04 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 19:00:20 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void Harl::error(void) {
     std::cout << std::endl;
 }
 
-// convert string into enum form 
+// convert string into enum (word to num)form 
 int Harl::getLevelIndex(std::string level) {
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     
@@ -68,6 +68,7 @@ void Harl::filterComplain(std::string minLevel) {
     int minLevelIndex = getLevelIndex(minLevel);
     
     // Use switch statement 
+    // fall through to execute all levels from minLevelIndex to the end, unless use break
     switch (minLevelIndex) {
         case 0:
             debug();

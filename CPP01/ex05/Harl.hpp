@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:19:24 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:19:28 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 18:51:35 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define HARL_HPP
 
 #include <string>
+#include <iostream>
+
 
 class Harl {
 private:

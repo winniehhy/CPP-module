@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:23:58 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/03 13:39:25 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 16:35:29 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include <cstring>
 
 void testStackZombie(const char* name = "StackZombie") {
     std::cout << "\n----- Testing Stack Zombie -----" << std::endl;

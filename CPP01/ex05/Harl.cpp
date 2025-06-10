@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:19:35 by hheng             #+#    #+#             */
-/*   Updated: 2025/05/16 16:31:57 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 18:51:32 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-#include <iostream>
 
 void Harl::debug(void) {
     std::cout << "[ DEBUG ]" << std::endl;

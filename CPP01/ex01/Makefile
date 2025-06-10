@@ -3,7 +3,7 @@ NAME = Moar_brainz
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Zombie.cpp zombieHorde.cpp
+SRC = main.cpp Zombie.cpp ZombieHorde.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
