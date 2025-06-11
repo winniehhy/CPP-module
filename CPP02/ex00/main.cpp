@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:33:28 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:33:29 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/10 20:12:48 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Fixed.hpp"
 
 int main(void) {
-    Fixed a;
-    Fixed b(a);
-    Fixed c;
+    Fixed a; //default
+    Fixed b(a); //copy
+    Fixed c; //default
     
-    c = b;
+    c = b; // assignment
     
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;

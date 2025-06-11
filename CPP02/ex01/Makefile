@@ -21,4 +21,7 @@ fclean: clean
 
 re: fclean all
 
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
+
 .PHONY: all clean fclean re

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:38:09 by hheng             #+#    #+#             */
-/*   Updated: 2025/04/01 10:38:11 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/11 10:43:40 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 // Default constructor
 Fixed::Fixed() : _fixedPointValue(0) {
