@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:33:16 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/11 09:28:06 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/12 14:14:12 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,4 @@ int Fixed::getRawBits(void) const {
 void Fixed::setRawBits(int const raw) {
     this->_fixedPointValue = raw;
 }
+

@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:35:49 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/11 10:42:10 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/12 14:30:05 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ float Fixed::toFloat(void) const
 }
 
 // Convert fixed point to int by shifting right by _fractionalBits
+/*
+1.  _fixedPointValue = roundf(value * (1 << _fractionalBits));
+2.  a = Fixed(1234.4321f);:
+3.  1 << 8 is 256
+4.  1234.4321 * 256 ≈ 316012.62; then rounf (316012.62) = 316013
+5.  _fixedPointValue = 316013
+6.  toInt() = 316013 >> 8 = 1234
+*/
 int Fixed::toInt(void) const {
     return this->_fixedPointValue >> _fractionalBits;
 }
