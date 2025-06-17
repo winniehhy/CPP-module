@@ -22,3 +22,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+# -Wshadow and-Wno-shadow compiler
+# -Wshadow	Want to catch accidental variable shadowing (recommended!)
+# -Wno-shadow	Intentionally reuse variable names and want to silence warnings

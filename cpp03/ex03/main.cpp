@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:48:28 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 09:05:46 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 09:40:55 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(void)
     ScavTrap alice("Alice");
     ScavTrap john("John");
     ScavTrap aliceClone(alice);   // Copy constructor
-    ScavTrap johnClone;
+    ScavTrap johnClone; // default constructor (bob)
     johnClone = john;             // Assignment operator
 
     std::cout << "\n=== FragTrap OCF Initialization ===" << std::endl;
@@ -139,14 +139,14 @@ int main(void)
     // Test ScavTrap special ability
     alice.guardGate();
     john.guardGate();
-    aliceClone.guardGate();
-    johnClone.guardGate();
+    // aliceClone.guardGate();
+    // johnClone.guardGate();
     
     // Test FragTrap special ability
     max.highFivesGuys();
     zoe.highFivesGuys();
-    maxClone.highFivesGuys();
-    zoeClone.highFivesGuys();
+    // maxClone.highFivesGuys();
+    // zoeClone.highFivesGuys();
 
     // Test DiamondTrap special abilities
     sam.guardGate();      // From ScavTrap
@@ -157,8 +157,8 @@ int main(void)
     lee.highFivesGuys();  // From FragTrap
     lee.whoAmI();         // DiamondTrap's own method
 
-    samClone.whoAmI();    // Test copy constructor
-    leeClone.whoAmI();    // Test assignment operator
+    //samClone.whoAmI();    // Test copy constructor
+    //leeClone.whoAmI();    // Test assignment operator
 
     std::cout << "\n=== Repair Phase ===" << std::endl;
     
@@ -212,7 +212,7 @@ int main(void)
     // Show special abilities
     mediumBot.guardGate();
     strongBot.highFivesGuys();
-    ultimateBot.guardGate();
+    ultimateBot.guardGate(); // to prove that diamond can access all
     ultimateBot.highFivesGuys();
     ultimateBot.whoAmI();
 

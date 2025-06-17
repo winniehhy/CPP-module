@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:43:29 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 08:47:23 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 09:18:59 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
     hitsPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
-    std::cout << "{ ScavTrap } " << name << " is constructed!" << std::endl;
+    std::cout << "{ ScavTrap } " << name << " is string constructed!" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
