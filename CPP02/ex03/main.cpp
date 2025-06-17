@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:42:43 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/12 16:32:47 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/13 14:55:04 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main() {
     std::cout << "Testing with triangle [(0,0), (10,0), (5,10)]" << std::endl;
 
     // Test cases
-    Point inside(5, 5);               // Point inside triangle
+    Point inside(5, -5);               // Point inside triangle
     Point onVertex(0.0f, 0.0f);       // Point on vertex, 1 subarea = 0
     Point onEdge(5.0f, 0.0f);         // Point on edge
     Point outside(20.0f, 20.0f);      // Point outside triangle

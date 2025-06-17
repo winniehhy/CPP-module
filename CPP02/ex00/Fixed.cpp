@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:33:16 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/12 14:14:12 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/13 14:00:57 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Fixed::Fixed() : _fixedPointValue(0) {
 }
 
 // Copy constructor
-Fixed::Fixed(const Fixed& other) {
+Fixed::Fixed(const Fixed& other)  {
     std::cout << "Copy constructor called" << std::endl;
     *this = other; // call assignment operator
 }

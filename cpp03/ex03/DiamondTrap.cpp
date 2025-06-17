@@ -3,41 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:47:47 by hheng             #+#    #+#             */
-/*   Updated: 2025/05/25 21:01:40 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 09:10:45 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
-#include <iostream>
 
-DiamondTrap::DiamondTrap(const std::string& name) 
-    : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name) {
+// Default Constructor
+DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(), name("Default") {
+    std::cout << "( DiamondTrap ) default constructor called" << std::endl;
     
-    // Set DiamondTrap specific attributes (combination of both parent classes)
-    // Hit points from FragTrap (100)
-    hitPoints = 100;
-    
-    // Energy points from ScavTrap (50) 
-    energyPoints = 50;
-    
-    // Attack damage from FragTrap (30)
-    attackDamage = 30;
-    
-    std::cout << "DiamondTrap " << name << " is forged!" << std::endl;
+    // Set stats according to requirements:
+    // Hit points from FragTrap (100), Energy from ScavTrap (50), Attack damage from FragTrap (30)
+    this->hitsPoints = 100;      // FragTrap's HP
+    this->energyPoints = 50;     // ScavTrap's Energy
+    this->attackDamage = 30;     // FragTrap's Attack Damage
 }
 
+// String Constructor
+DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name), name(name) {
+    std::cout << "( DiamondTrap ) string constructor called for " << name << std::endl;
+    
+    // Set stats according to requirements:
+    // Hit points from FragTrap (100), Energy from ScavTrap (50), Attack damage from FragTrap (30)
+    this->hitsPoints = 100;      // FragTrap's HP
+    this->energyPoints = 50;     // ScavTrap's Energy  
+    this->attackDamage = 30;     // FragTrap's Attack Damage
+}
+
+// Copy Constructor
+DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), FragTrap(other), ScavTrap(other), name(other.name) {
+    std::cout << "( DiamondTrap ) copy constructor called" << std::endl;
+}
+
+// Copy Assignment Operator
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
+    std::cout << "( DiamondTrap ) copy assignment operator called" << std::endl;
+    if (this != &other) {
+        ClapTrap::operator=(other);
+        FragTrap::operator=(other);
+        ScavTrap::operator=(other);
+        this->name = other.name;
+    }
+    return *this;
+}
+
+// Destructor
 DiamondTrap::~DiamondTrap() {
-    std::cout << "DiamondTrap " << name << " is shattered!" << std::endl;
+    std::cout << "( DiamondTrap ) destructor called for " << this->name << std::endl;
 }
 
 void DiamondTrap::attack(const std::string& target) {
     ScavTrap::attack(target);
 }
 
+// Special ability - shows both DiamondTrap name and ClapTrap name
 void DiamondTrap::whoAmI() {
-    std::cout << "I am DiamondTrap " << name 
-              << " and my ClapTrap name is " << ClapTrap::name << std::endl;
+    std::cout << "DiamondTrap name: " << this->name << std::endl;
+    std::cout << "ClapTrap name: " << ClapTrap::name << std::endl;
 }

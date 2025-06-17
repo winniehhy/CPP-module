@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hheng < hheng@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:40:06 by hheng             #+#    #+#             */
-/*   Updated: 2025/05/25 21:03:20 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 08:20:59 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,28 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap { 
+// VIRTUAL inheritance prevents diamond problem
+class FragTrap : virtual public ClapTrap {
 public:
+    // Default Constructor
+    FragTrap();
+    
+    // String Constructor
     FragTrap(const std::string& name);
+    
+    // Copy Constructor
+    FragTrap(const FragTrap& other);
+    
+    // Copy Assignment Operator
+    FragTrap& operator=(const FragTrap& other);
+    
+    // Destructor
     ~FragTrap();
     
+    // Override attack function
     void attack(const std::string& target);
+    
+    // Special ability
     void highFivesGuys(void);
 };
 
