@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 18:39:36 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 05:30:05 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 12:53:07 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,10 @@ int main(void)
     dragon.getStatus();
 
     std::cout << "\n=== Game End ===" << std::endl;
+
+    // ClapTrap destructor called for Bob      ← bobClone (created 4th, destroyed 1st)
+    // ClapTrap destructor called for Dragon   ← dragonClone (created 3rd, destroyed 2nd)  
+    // ClapTrap destructor called for Dragon   ← dragon (created 2nd, destroyed 3rd)
+    // ClapTrap destructor called for Bob      ← bob (created 1st, destroyed 4th)
     return 0;
 }
