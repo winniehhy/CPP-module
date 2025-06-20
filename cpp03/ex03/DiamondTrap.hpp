@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:39:33 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 08:34:36 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:11:33 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 // DiamondTrap inherits from both FragTrap and ScavTrap
 // This creates the "diamond problem" - ClapTrap is inherited twice
-class DiamondTrap : public FragTrap, public ScavTrap {
+class DiamondTrap :  public ScavTrap, public FragTrap {
 private:
     std::string name;  // DiamondTrap's own name (same variable name as ClapTrap)
 

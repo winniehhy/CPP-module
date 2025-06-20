@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 18:39:36 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 12:53:07 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 17:23:29 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ int main(void)
     bob.getStatus();
     dragon.getStatus();
 
+    
     // Set up their stats
     std::cout << "\n=== Setting Up Stats ===" << std::endl;
     bob.setAttackDamage(4);
     dragon.setAttackDamage(5);
 
-    // bob.setHealthPoints(0);
+    // bob.setHitsPoints(0);
     // dragon.setEnergyPoints(2);
 
     // Show initial status

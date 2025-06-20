@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 18:52:15 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 06:30:21 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 17:50:34 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,17 @@ int main(void)
     
     john.attack("Alice");
     alice.takeDamage(john.getAttackDamage());
+
+    std::cout << "\n=== Pointer ===" << std::endl;
+
+    ClapTrap *c1 = new ClapTrap("Clappy");
+    ClapTrap *c2 = new ScavTrap("Scavy");
+
+    c1->attack("Scavy");
+    c2->attack("Scavy");
+
+    delete c1;
+    delete c2;
 
     std::cout << "\n=== Special Abilities ===" << std::endl;
     

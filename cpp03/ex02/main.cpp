@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 18:52:15 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 06:45:22 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 17:55:40 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,21 @@ int main(void)
     
     zoe.attack("Max");
     max.takeDamage(zoe.getAttackDamage());
+
+    std::cout << "\n=== Pointer ===" << std::endl;
+
+    ClapTrap *c1 = new ClapTrap("Clappy");
+    ClapTrap *c2 = new ScavTrap("Scavy");
+    ClapTrap *c3 = new FragTrap("Fraggy");
+
+    c1->attack("Scavy");
+    c2->attack("Scavy");
+    c3->attack("Clappy");
+
+    delete c1;
+    delete c2;
+    delete c3;
+    
 
     std::cout << "\n=== Special Abilities ===" << std::endl;
     

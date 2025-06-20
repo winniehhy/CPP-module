@@ -30,6 +30,7 @@ void testDeepCopy() {
     // Test Dog deep copy
     std::cout << "\n--- Testing Dog Deep Copy ---" << std::endl;
     Dog originalDog;
+    std :: cout << "Original Value : " << originalDog.getBrain()->getIdea(0) << std::endl;
     originalDog.getBrain()->setIdea(0, "Original dog idea");
     
     Dog copiedDog = originalDog; // Copy constructor
@@ -37,7 +38,7 @@ void testDeepCopy() {
     
     std::cout << "Original dog idea: " << originalDog.getBrain()->getIdea(0) << std::endl;
     std::cout << "Copied dog idea: " << copiedDog.getBrain()->getIdea(0) << std::endl;
-    std::cout << "Brain addresses different? " << (originalDog.getBrain() != copiedDog.getBrain() ? "YES" : "NO") << std::endl;
+    std::cout << "Brain addresses same? " << (originalDog.getBrain() == copiedDog.getBrain() ? "YES" : "NO") << std::endl;
     
     // Test Cat deep copy
     std::cout << "\n--- Testing Cat Deep Copy ---" << std::endl;
@@ -50,7 +51,7 @@ void testDeepCopy() {
     
     std::cout << "Original cat idea: " << originalCat.getBrain()->getIdea(0) << std::endl;
     std::cout << "Copied cat idea: " << copiedCat.getBrain()->getIdea(0) << std::endl;
-    std::cout << "Brain addresses different? " << (originalCat.getBrain() != copiedCat.getBrain() ? "YES" : "NO") << std::endl;
+    std::cout << "Brain addresses same? " << (originalCat.getBrain() == copiedCat.getBrain() ? "YES" : "NO") << std::endl;
 }
 
 void testPolymorphism() {
@@ -71,13 +72,8 @@ void testPolymorphism() {
 int main() {
     std::cout << "=== ABSTRACT ANIMAL BRAIN EXERCISE ===" << std::endl;
     
-    // Test that AAnimal is abstract
     testAbstractClass();
-    
-    // Test basic functionality first
     testPolymorphism();
-    
-    // Test deep copy functionality
     testDeepCopy();
     
     std::cout << "\n=== MAIN ARRAY TEST ===" << std::endl;
@@ -109,22 +105,6 @@ int main() {
         delete animals[i];
     }
     
-    std::cout << "\n=== ADDITIONAL TESTS ===" << std::endl;
-    
-    // Test with different array sizes
-    std::cout << "\n--- Testing with smaller array ---" << std::endl;
-    AAnimal* smallArray[4];
-    for (int i = 0; i < 4; i++) {
-        if (i % 2 == 0) {
-            smallArray[i] = new Dog();
-        } else {
-            smallArray[i] = new Cat();
-        }
-    }
-    
-    for (int i = 0; i < 4; i++) {
-        delete smallArray[i];
-    }
     
     std::cout << "\n=== PROGRAM COMPLETED ===" << std::endl;
     return 0;

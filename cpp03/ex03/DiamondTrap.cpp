@@ -6,14 +6,14 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:47:47 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 09:10:45 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:14:13 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 // Default Constructor
-DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(), name("Default") {
+DiamondTrap::DiamondTrap() : ClapTrap(),  ScavTrap(), FragTrap(), name("Default") {
     std::cout << "( DiamondTrap ) default constructor called" << std::endl;
     
     // Set stats according to requirements:
@@ -24,7 +24,7 @@ DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(), name("Default")
 }
 
 // String Constructor
-DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name), name(name) {
+DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name) {
     std::cout << "( DiamondTrap ) string constructor called for " << name << std::endl;
     
     // Set stats according to requirements:
@@ -35,7 +35,7 @@ DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name + "_clap_name"
 }
 
 // Copy Constructor
-DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), FragTrap(other), ScavTrap(other), name(other.name) {
+DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), ScavTrap(other), FragTrap(other), name(other.name) {
     std::cout << "( DiamondTrap ) copy constructor called" << std::endl;
 }
 
@@ -57,7 +57,7 @@ DiamondTrap::~DiamondTrap() {
 }
 
 void DiamondTrap::attack(const std::string& target) {
-    ScavTrap::attack(target);
+    FragTrap::attack(target);
 }
 
 // Special ability - shows both DiamondTrap name and ClapTrap name

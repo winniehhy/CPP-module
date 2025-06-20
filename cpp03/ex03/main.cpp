@@ -6,7 +6,7 @@
 /*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 20:48:28 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/17 09:40:55 by hheng            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:03:45 by hheng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,49 +172,65 @@ int main(void)
     sam.beRepaired(12);
     lee.beRepaired(18);
 
-    std::cout << "\n=== Cross-Class Battle ===" << std::endl;
+    // std::cout << "\n=== Cross-Class Battle ===" << std::endl;
     
-    // ClapTrap vs ScavTrap vs FragTrap vs DiamondTrap
-    std::cout << "Multi-class battle demonstration:" << std::endl;
+    // // ClapTrap vs ScavTrap vs FragTrap vs DiamondTrap
+    // std::cout << "Multi-class battle demonstration:" << std::endl;
     
-    ClapTrap weakBot("WeakBot");
-    ScavTrap mediumBot("MediumBot");
-    FragTrap strongBot("StrongBot");
-    DiamondTrap ultimateBot("UltimateBot");
+    // ClapTrap weakBot("WeakBot");
+    // ScavTrap mediumBot("MediumBot");
+    // FragTrap strongBot("StrongBot");
+    // DiamondTrap ultimateBot("UltimateBot");
     
-    weakBot.setAttackDamage(3);
+    // weakBot.setAttackDamage(3);
     
-    std::cout << "Before cross-battle:" << std::endl;
-    weakBot.getStatus();
-    mediumBot.getStatus();
-    strongBot.getStatus();
-    ultimateBot.getStatus();
+    // std::cout << "Before cross-battle:" << std::endl;
+    // weakBot.getStatus();
+    // mediumBot.getStatus();
+    // strongBot.getStatus();
+    // ultimateBot.getStatus();
     
-    // Round 1: Chain attacks
-    weakBot.attack("MediumBot");
-    mediumBot.takeDamage(weakBot.getAttackDamage());
+    // // Round 1: Chain attacks
+    // weakBot.attack("MediumBot");
+    // mediumBot.takeDamage(weakBot.getAttackDamage());
     
-    mediumBot.attack("StrongBot");
-    strongBot.takeDamage(mediumBot.getAttackDamage());
+    // mediumBot.attack("StrongBot");
+    // strongBot.takeDamage(mediumBot.getAttackDamage());
     
-    strongBot.attack("UltimateBot");
-    ultimateBot.takeDamage(strongBot.getAttackDamage());
+    // strongBot.attack("UltimateBot");
+    // ultimateBot.takeDamage(strongBot.getAttackDamage());
     
-    ultimateBot.attack("WeakBot");
-    weakBot.takeDamage(ultimateBot.getAttackDamage());
+    // ultimateBot.attack("WeakBot");
+    // weakBot.takeDamage(ultimateBot.getAttackDamage());
     
-    std::cout << "After cross-battle:" << std::endl;
-    weakBot.getStatus();
-    mediumBot.getStatus();
-    strongBot.getStatus();
-    ultimateBot.getStatus();
+    // std::cout << "After cross-battle:" << std::endl;
+    // weakBot.getStatus();
+    // mediumBot.getStatus();
+    // strongBot.getStatus();
+    // ultimateBot.getStatus();
 
-    // Show special abilities
-    mediumBot.guardGate();
-    strongBot.highFivesGuys();
-    ultimateBot.guardGate(); // to prove that diamond can access all
-    ultimateBot.highFivesGuys();
-    ultimateBot.whoAmI();
+    // // Show special abilities
+    // mediumBot.guardGate();
+    // strongBot.highFivesGuys();
+    // ultimateBot.guardGate(); // to prove that diamond can access all
+    // ultimateBot.highFivesGuys();
+    // ultimateBot.whoAmI();
+
+    std::cout << "\n=== Pointer ===" << std::endl;
+    ClapTrap *c1 = new ClapTrap("Clappy");
+    ClapTrap *c2 = new ScavTrap("Scavy");
+    ClapTrap *c3 = new FragTrap("Fraggy");
+    ClapTrap *c4 = new DiamondTrap("Dima");
+
+    c1->attack("Scavy");
+    c2->attack("Scavy");
+    c3->attack("Clappy");
+    c4->attack("Clappy");
+
+    delete c1; 
+    delete c2;
+    delete c3;
+    delete c4; 
 
     std::cout << "\n=== Final Status ===" << std::endl;
     
