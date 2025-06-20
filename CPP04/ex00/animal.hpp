@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   animal.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 18:09:15 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/05 18:09:15 by hheng            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
@@ -20,6 +9,10 @@
  * The virtual keyword is not needed for constructors as they don't support
  * runtime polymorphism. They are responsible for creating instances of a
  * class and are not meant to be overridden
+ * 
+ * 
+ * Polymorphism mean = different object classes can respond to the same method (makeSound) call in their own way
+ *                   = for reuse function purpose from the base class
 */
 
 class Animal {

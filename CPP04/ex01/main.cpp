@@ -50,14 +50,31 @@ void testPolymorphism() {
     delete i;
 }
 
+void testBrainOverflow() {
+    std::cout << "\n=== TESTING BRAIN OVERFLOW ===" << std::endl;
+    
+    Dog dog;
+    
+    // ✅ Valid access - within bounds
+   
+    std::cout << "Idea at index 0: " << dog.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Idea at index 99: " << dog.getBrain()->getIdea(99) << std::endl;
+
+    // Try to get invalid ideas
+    std::cout << "\nTrying to get invalid ideas:" << std::endl;
+    std::cout << "Idea at index 100: " << dog.getBrain()->getIdea(100) << std::endl;
+    std::cout << "Idea at index 150: " << dog.getBrain()->getIdea(150) << std::endl;
+    std::cout << "Idea at index -1: " << dog.getBrain()->getIdea(-1) << std::endl;
+}
+
 int main() {
     std::cout << "=== ANIMAL BRAIN EXERCISE ===" << std::endl;
     
-    // Test basic functionality first
     testPolymorphism();
-    
-    // Test deep copy functionality
+
     testDeepCopy();
+
+    testBrainOverflow();
     
     std::cout << "\n=== SUBJECT ARRAY TEST ===" << std::endl;
     

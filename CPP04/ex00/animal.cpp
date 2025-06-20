@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   animal.cpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hheng <hheng@student.42kl.edu.my>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 18:04:00 by hheng             #+#    #+#             */
-/*   Updated: 2025/06/05 18:04:00 by hheng            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Animal.hpp"
 
 // Default constructor
@@ -23,7 +11,7 @@ Animal::Animal(const std::string& animalType) : type(animalType) {
 }
 
 // Copy constructor
-Animal::Animal(const Animal& other) : type(other.type) {
+Animal::Animal(const Animal &other) : type(other.type) {
     std::cout << "Animal copy constructor called " << type << std::endl;
 }
 
