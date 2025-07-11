@@ -7,7 +7,7 @@
 void testPolymorphism() {
     
     const Animal* meta = new Animal();
-    const Animal* j = new Dog();
+    const Dog* j = new Dog();
     const Animal* i = new Cat();
     
     std::cout  << meta->getType() << std::endl;
@@ -40,7 +40,6 @@ void testWrongPolymorphism() {
     
     std::cout << "\n🔹 Testing makeSound() - Should call base class version (WRONG!):" << std::endl;
     wrongCat->makeSound(); // will output WrongAnimal sound, not WrongCat!
-    std::cout << "WrongAnimal sound: ";
     wrongMeta->makeSound();
     
     std::cout << "\n🔹 Cleaning up wrong animals:" << std::endl;
@@ -60,7 +59,7 @@ int main() {
     
     
     
-    std::cout << "✅ All tests finished successfully!" << std::endl;
+    // std::cout << "✅ All tests finished successfully!" << std::endl;
     
     return 0;
 }

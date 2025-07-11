@@ -2,23 +2,24 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "Brain.hpp"
+#include "Animal.hpp"
 
 void testAbstractClass() {
     std::cout << "\n=== TESTING ABSTRACT CLASS ===" << std::endl;
     
     // This would cause a compilation error:
-    //AAnimal animal; // ERROR: Cannot instantiate abstract class
-
+   // AAnimal animal; // ERROR: Cannot instantiate abstract class
+   
      // But  CAN create derived class objects:
-    // Dog dog;
-    // Cat cat;
+    Dog dog;
+    Cat cat;
 
-    // // ✅ Call makeSound() directly on derived objects:
-    // std::cout << "Dog says: ";
-    // dog.makeSound();   
+    // ✅ Call makeSound() directly on derived objects:
+    std::cout << "Dog says: ";
+    dog.makeSound();   
     
-    // std::cout << "Cat says: ";
-    // cat.makeSound();       
+    std::cout << "Cat says: ";
+    cat.makeSound();       
 
     std::cout << "✓ AAnimal cannot be instantiated directly (abstract class)" << std::endl;
     std::cout << "✓ But we can use AAnimal* pointers for polymorphism" << std::endl;

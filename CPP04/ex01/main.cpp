@@ -9,6 +9,7 @@ void testDeepCopy() {
     // Test Dog deep copy
     std::cout << "\n--- Testing Dog Deep Copy ---" << std::endl;
     Dog originalDog;
+    std ::cout << "Original Value : " << originalDog.getBrain()->getIdea(0) << std::endl;
     originalDog.getBrain()->setIdea(0, "Original dog idea");
     
     Dog copiedDog = originalDog; // Copy constructor --create new Dog object
@@ -70,7 +71,7 @@ void testBrainOverflow() {
 int main() {
     std::cout << "=== ANIMAL BRAIN EXERCISE ===" << std::endl;
     
-    testPolymorphism();
+    //testPolymorphism();
 
     testDeepCopy();
 

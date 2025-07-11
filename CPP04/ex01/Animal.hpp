@@ -17,7 +17,7 @@
 class Animal {
 protected:
     std::string type;
-    Brain* brain; // allow each dog or cat has a Brain
+    // Brain* brain; // allow each dog or cat has a Brain
 
 public:
 
