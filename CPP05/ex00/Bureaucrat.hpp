@@ -11,8 +11,7 @@ private:
     int _grade;
 
 public:
-    // Orthodox Canonical Form
-    // Default constructor
+   // default constructor
     Bureaucrat();
     
     // Parameterized constructor
@@ -50,7 +49,7 @@ private:
     void validateGrade(int grade) const;
 };
 
-// Stream insertion operator (non-member function)
+
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
-#endif // BUREAUCRAT_HPP
+#endif 

@@ -2,6 +2,10 @@
 #include "AForm.hpp"
 
 
+static const char* RED = "\033[1;31m";
+static const char* RESET = "\033[0m";
+
+
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
     std::cout << "Bureaucrat default constructor called" << std::endl;
 }
@@ -70,7 +74,7 @@ void Bureaucrat::signForm(AForm& form) {
         std::cout << _name << " signed " << form.getName() << std::endl;
     } catch (const std::exception& e) {
         std::cout << _name << " couldn't sign " << form.getName() 
-                  << " because " << e.what() << std::endl;
+                  << " because " << RED << e.what() << RESET << std::endl;
     }
 }
 
@@ -79,7 +83,7 @@ void Bureaucrat::executeForm(const AForm& form) {
         form.execute(*this);
     } catch (const std::exception& e) {
         std::cout << _name << " couldn't execute " << form.getName() 
-                  << " because " << e.what() << std::endl;
+                  << " because " << RED << e.what() << RESET << std::endl;
     }
 }
 

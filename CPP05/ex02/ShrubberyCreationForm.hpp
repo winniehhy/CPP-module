@@ -8,7 +8,7 @@ private:
     std::string _target;
 
 public:
-    // Orthodox Canonical Form
+    // OCF
     ShrubberyCreationForm();
     ShrubberyCreationForm(const std::string& target);
     ShrubberyCreationForm(const ShrubberyCreationForm& other);

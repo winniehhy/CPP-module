@@ -8,7 +8,7 @@ private:
     std::string _target;
 
 public:
-    // Orthodox Canonical Form
+    // OCF
     PresidentialPardonForm();
     PresidentialPardonForm(const std::string& target);
     PresidentialPardonForm(const PresidentialPardonForm& other);

@@ -1,6 +1,10 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+// ANSI color for exception messages
+static const char* RED = "\033[1;31m";
+static const char* RESET = "\033[0m";
+
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
     std::cout << "Bureaucrat default constructor called" << std::endl;
@@ -63,14 +67,14 @@ void Bureaucrat::decrementGrade() {
     std::cout << _name << " has been demoted to grade " << _grade << std::endl;
 }
 
-// add new for this exercise
+// New
 void Bureaucrat::signForm(Form& form) {
     try {
         form.beSigned(*this);
         std::cout << _name << " signed " << form.getName() << std::endl;
     } catch (const std::exception& e) {
         std::cout << _name << " couldn't sign " << form.getName() 
-                  << " because " << e.what() << std::endl;
+                  << " because " << RED << e.what() << RESET << std::endl;
     }
 }
 

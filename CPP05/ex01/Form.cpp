@@ -1,12 +1,15 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-// Default constructor
+
+static const char* GREEN = "\033[1;32m"; //  green
+static const char* YELLOW = "\033[1;33m"; //  yellow
+static const char* RESET = "\033[0m";
+
 Form::Form() : _name("Default Form"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {
     std::cout << "Form default constructor called" << std::endl;
 }
 
-// Parameterized constructor
 Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) 
     : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
     validateGrade(gradeToSign);
@@ -14,14 +17,12 @@ Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
     std::cout << "Form " << _name << " constructor called" << std::endl;
 }
 
-// Copy constructor
 Form::Form(const Form& other) 
     : _name(other._name), _isSigned(other._isSigned), 
       _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {
     std::cout << "Form copy constructor called" << std::endl;
 }
 
-// Copy assignment operator
 Form& Form::operator=(const Form& other) {
     std::cout << "Form copy assignment operator called" << std::endl;
     if (this != &other) {
@@ -31,7 +32,6 @@ Form& Form::operator=(const Form& other) {
     return *this;
 }
 
-// Destructor
 Form::~Form() {
     std::cout << "Form " << _name << " destructor called" << std::endl;
 }
@@ -63,7 +63,7 @@ void Form::validateGrade(int grade) const {
     }
 }
 
-// beSigned function
+// where Bureaucrat interacts with the Form
 void Form::beSigned(const Bureaucrat& bureaucrat) {
     if (bureaucrat.getGrade() <= _gradeToSign) {
         _isSigned = true;
@@ -72,7 +72,6 @@ void Form::beSigned(const Bureaucrat& bureaucrat) {
     }
 }
 
-// Exception implementations
 const char* Form::GradeTooHighException::what() const throw() {
     return "Form grade is too high!";
 }
@@ -81,11 +80,14 @@ const char* Form::GradeTooLowException::what() const throw() {
     return "Form grade is too low!";
 }
 
-// Stream insertion operator
+
 std::ostream& operator<<(std::ostream& os, const Form& form) {
-    os << "Form " << form.getName() 
-       << ", signed: " << (form.isSigned() ? "yes" : "no")
-       << ", grade to sign: " << form.getGradeToSign()
+    os << "Form " << form.getName() << ", signed: ";
+    if (form.isSigned())
+        os << GREEN << "yes" << RESET;
+    else
+        os << YELLOW << "no" << RESET;
+    os << ", grade to sign: " << form.getGradeToSign()
        << ", grade to execute: " << form.getGradeToExecute();
     return os;
 }

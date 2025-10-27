@@ -1,6 +1,10 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
+// ANSI color for forms
+static const char* BLUE = "\033[1;34m"; // bold blue
+static const char* RESET = "\033[0m";
+
 // Default constructor
 AForm::AForm() : _name("Default Form"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {
     std::cout << "AForm default constructor called" << std::endl;
@@ -86,9 +90,11 @@ const char* AForm::FormNotSignedException::what() const throw() {
 
 // Stream insertion operator
 std::ostream& operator<<(std::ostream& os, const AForm& form) {
-    os << "Form " << form.getName() 
+    os << BLUE;
+    os << "Form " << form.getName()
        << ", signed: " << (form.isSigned() ? "yes" : "no")
        << ", grade to sign: " << form.getGradeToSign()
        << ", grade to execute: " << form.getGradeToExecute();
+    os << RESET;
     return os;
 }

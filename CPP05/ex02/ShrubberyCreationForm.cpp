@@ -2,25 +2,21 @@
 #include "Bureaucrat.hpp"
 #include <fstream>
 
-// Default constructor
 ShrubberyCreationForm::ShrubberyCreationForm() 
     : AForm("Shrubbery Creation", 145, 137), _target("default") {
     std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
 }
 
-// Parameterized constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) 
     : AForm("Shrubbery Creation", 145, 137), _target(target) {
     std::cout << "ShrubberyCreationForm " << _target << " constructor called" << std::endl;
 }
 
-// Copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) 
     : AForm(other), _target(other._target) {
     std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
 }
 
-// Copy assignment operator
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
     std::cout << "ShrubberyCreationForm copy assignment operator called" << std::endl;
     if (this != &other) {
@@ -30,12 +26,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return *this;
 }
 
-// Destructor
 ShrubberyCreationForm::~ShrubberyCreationForm() {
     std::cout << "ShrubberyCreationForm " << _target << " destructor called" << std::endl;
 }
 
-// Execute method
+
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
     if (!isSigned()) {
         throw FormNotSignedException();

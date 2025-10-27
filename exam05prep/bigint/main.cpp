@@ -1,3 +1,5 @@
+//GIVEN DURING THE EXAM, DO NOT MODIFY IT!
+
 #include "bigint.hpp"
 #include <iostream>
 

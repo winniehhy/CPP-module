@@ -1,6 +1,9 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include <iostream>
+
+
+static const char* RED = "\033[1;31m"; 
+static const char* RESET = "\033[0m";
 
 int main() {
     std::cout << "=== Testing Form and Bureaucrat Classes ===" << std::endl;
@@ -19,27 +22,28 @@ int main() {
         std::cout << taxForm << std::endl;
         
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << RED << e.what() << RESET << std::endl;
     }
     
 
     std::cout << "\n2. Testing Form constructor exceptions:" << std::endl;
     try {
         Form invalidForm1("Invalid", 0, 50);  // Grade too high
+        
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << RED << e.what() << RESET << std::endl;
     }
     
     try {
         Form invalidForm2("Invalid", 50, 151);  // Grade too low
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << RED << e.what() << RESET << std::endl;
     }
     
   
     std::cout << "\n3. Testing signing failure:" << std::endl;
     try {
-        Form importantForm("Important Form", 10, 5);
+        Form importantForm("Important Form", 20, 5);
         Bureaucrat lowGradeBureaucrat("Bob", 50);
         
         std::cout << importantForm << std::endl;
@@ -49,7 +53,7 @@ int main() {
         std::cout << importantForm << std::endl;
         
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << RED << e.what() << RESET << std::endl;
     }
     
     return 0;

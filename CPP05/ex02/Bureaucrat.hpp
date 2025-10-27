@@ -13,8 +13,7 @@ private:
     int _grade;
 
 public:
-    // Orthodox Canonical Form
-    // Default constructor
+    // OCF
     Bureaucrat();
     
     // Parameterized constructor

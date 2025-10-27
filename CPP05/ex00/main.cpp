@@ -1,5 +1,7 @@
 #include "Bureaucrat.hpp"
-#include <iostream>
+
+static const char* RED = "\033[1;31m"; // red
+static const char* RESET = "\033[0m";
 
 int main() {
     std::cout << "=== Testing Bureaucrat Class ===" << std::endl;
@@ -10,7 +12,7 @@ int main() {
         Bureaucrat john("John", 50);
         std::cout << john << std::endl;
         
-        // Test increment/decrement grade
+        
         john.incrementGrade();
         std::cout << john << std::endl;
         
@@ -18,7 +20,7 @@ int main() {
         std::cout << john << std::endl;
         
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << RED << "Caught exception: " << e.what() << RESET << std::endl;
     }
     
     
@@ -26,13 +28,13 @@ int main() {
     try {
         Bureaucrat invalid1("Invalid", 0);  // Too high
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << RED << "Caught exception: " << e.what() << RESET << std::endl;
     }
     
     try {
         Bureaucrat invalid2("Invalid", 151);  // Too low
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << RED << "Caught exception: " << e.what() << RESET << std::endl;
     }
     
  
@@ -42,7 +44,7 @@ int main() {
         std::cout << alice << std::endl;
         alice.incrementGrade(); 
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << RED << "Caught exception: " << e.what() << RESET << std::endl;
     }
     
     try {
@@ -52,6 +54,8 @@ int main() {
     } catch (const std::exception& e) {
         std::cout << "Caught exception: " << e.what() << std::endl;
     }
+
+    
     
     return 0;
 }

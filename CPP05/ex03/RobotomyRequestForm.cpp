@@ -3,25 +3,29 @@
 #include <cstdlib>
 #include <ctime>
 
-// Default constructor
+
+static const char* RED = "\033[1;31m";
+static const char* RESET = "\033[0m";
+
+
 RobotomyRequestForm::RobotomyRequestForm() 
     : AForm("Robotomy Request", 72, 45), _target("default") {
     std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
-// Parameterized constructor
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) 
     : AForm("Robotomy Request", 72, 45), _target(target) {
     std::cout << "RobotomyRequestForm " << _target << " constructor called" << std::endl;
 }
 
-// Copy constructor
+
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) 
     : AForm(other), _target(other._target) {
     std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 }
 
-// Copy assignment operator
+
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
     std::cout << "RobotomyRequestForm copy assignment operator called" << std::endl;
     if (this != &other) {
@@ -31,12 +35,12 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
     return *this;
 }
 
-// Destructor
+
 RobotomyRequestForm::~RobotomyRequestForm() {
     std::cout << "RobotomyRequestForm " << _target << " destructor called" << std::endl;
 }
 
-// Execute method
+
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
     if (!isSigned()) {
         throw FormNotSignedException();
@@ -57,7 +61,7 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
     if (rand() % 2 == 0) {
         std::cout << _target << " has been robotomized successfully!" << std::endl;
     } else {
-        std::cout << "Robotomy failed for " << _target << std::endl;
+        std::cout << RED << "Robotomy failed for " << _target << RESET << std::endl;
     }
     
     std::cout << executor.getName() << " executed " << getName() << std::endl;

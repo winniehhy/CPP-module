@@ -8,7 +8,7 @@ private:
     std::string _target;
 
 public:
-    // Orthodox Canonical Form
+    // OCF
     RobotomyRequestForm();
     RobotomyRequestForm(const std::string& target);
     RobotomyRequestForm(const RobotomyRequestForm& other);

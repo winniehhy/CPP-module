@@ -1,17 +1,25 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "Intern.hpp"
-#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+
+static const char* YELLOW = "\033[1;33m"; 
+static const char* RED = "\033[1;31m"; 
+static const char* RESET = "\033[0m";
+
 
 int main() {
     std::cout << "=== Testing Intern Class ===" << std::endl;
     
     try {
-        // Create bureaucrat and intern
+        //std::srand(static_cast<unsigned int>(std::time(NULL)));
+       
         Bureaucrat bureaucrat("John", 5);
         Intern someRandomIntern;
         
-        std::cout << "\n1. Testing valid form creation:" << std::endl;
+    std::cout << std::endl << YELLOW << "1. Testing valid form creation:" << RESET << std::endl;
         
         // Test creating different forms
         AForm* rrf = someRandomIntern.makeForm("robotomy request", "Bender");
@@ -22,7 +30,7 @@ int main() {
             delete rrf;
         }
         
-        std::cout << "\n2. Testing shrubbery form:" << std::endl;
+    std::cout << std::endl << YELLOW << "2. Testing shrubbery form:" << RESET << std::endl;
         AForm* scf = someRandomIntern.makeForm("shrubbery creation", "garden");
         if (scf) {
             std::cout << *scf << std::endl;
@@ -31,7 +39,7 @@ int main() {
             delete scf;
         }
         
-        std::cout << "\n3. Testing presidential pardon:" << std::endl;
+    std::cout << std::endl << YELLOW << "3. Testing presidential pardon:" << RESET << std::endl;
         AForm* ppf = someRandomIntern.makeForm("presidential pardon", "Arthur Dent");
         if (ppf) {
             std::cout << *ppf << std::endl;
@@ -40,14 +48,14 @@ int main() {
             delete ppf;
         }
         
-        std::cout << "\n4. Testing invalid form name:" << std::endl;
+    std::cout << std::endl << YELLOW << "4. Testing invalid form name:" << RESET << std::endl;
         AForm* invalid = someRandomIntern.makeForm("invalid form", "target");
         if (invalid) {
             delete invalid;
         }
         
     } catch (const std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << RED << e.what() << RESET << std::endl;
     }
     
     return 0;
