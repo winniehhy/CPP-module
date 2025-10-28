@@ -22,7 +22,7 @@ int main() {
     std::cout << std::endl << YELLOW << "1. Testing valid form creation:" << RESET << std::endl;
         
         // Test creating different forms
-        AForm* rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        AForm* rrf = someRandomIntern.makeForm("Robotomy Request", "Bender");
         if (rrf) {
             std::cout << *rrf << std::endl;
             bureaucrat.signForm(*rrf);
@@ -31,7 +31,7 @@ int main() {
         }
         
     std::cout << std::endl << YELLOW << "2. Testing shrubbery form:" << RESET << std::endl;
-        AForm* scf = someRandomIntern.makeForm("shrubbery creation", "garden");
+        AForm* scf = someRandomIntern.makeForm("Shrubbery creation", "garden");
         if (scf) {
             std::cout << *scf << std::endl;
             bureaucrat.signForm(*scf);

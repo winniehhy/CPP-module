@@ -9,7 +9,7 @@ int main() {
  
     std::cout << "\n1. Testing normal creation and << operator:" << std::endl;
     try {
-        Bureaucrat john("John", 50);
+        Bureaucrat john("John", 100);
         std::cout << john << std::endl;
         
         
