@@ -1,3 +1,4 @@
+
 #include "ScalarConverter.hpp"
 
 // OCF
@@ -160,37 +161,47 @@ void ScalarConverter::displayResults(char c, int i, float f, double d) {
 // Main conversion function
 void ScalarConverter::convert(const std::string& literal) {
 	Type type = identifyType(literal);
-	
+
 	switch (type) {
 		case CHAR: {
 			// Extract character from 'c' format or single char
 			char c = (literal.length() == 3) ? literal[1] : literal[0];
-			displayResults(c, static_cast<int>(c), 
+			displayResults(c, static_cast<int>(c),
 						  static_cast<float>(c), static_cast<double>(c));
 			break;
 		}
-		
+
 		case INT: {
-			long val = std::atol(literal.c_str());
-			displayResults(static_cast<char>(val), static_cast<int>(val),
-						  static_cast<float>(val), static_cast<double>(val));
+			std::stringstream ss(literal);
+			long val = 0;
+			ss >> val;
+			// Check for conversion errors, out of range, or garbage after number
+			if (ss.fail() || !ss.eof() || val > INT_MAX || val < INT_MIN) {
+				std::cout << "char: impossible\n";
+				std::cout << "int: impossible\n";
+				std::cout << "float: impossible\n";
+				std::cout << "double: impossible\n";
+			} else {
+				displayResults(static_cast<char>(val), static_cast<int>(val),
+							  static_cast<float>(val), static_cast<double>(val));
+			}
 			break;
 		}
-		
+
 		case FLOAT: {
 			float f = std::strtof(literal.c_str(), NULL);
 			displayResults(static_cast<char>(f), static_cast<int>(f),
 						  f, static_cast<double>(f));
 			break;
 		}
-		
+
 		case DOUBLE: {
 			double d = std::strtod(literal.c_str(), NULL);
 			displayResults(static_cast<char>(d), static_cast<int>(d),
 						  static_cast<float>(d), d);
 			break;
 		}
-		
+
 		case INVALID:
 			std::cout << "char: impossible\n";
 			std::cout << "int: impossible\n";

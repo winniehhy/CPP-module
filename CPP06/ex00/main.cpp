@@ -52,4 +52,14 @@ int main(int ac, char** av) {
 	return 0;
 }
 
+// Check all handle
+// - ASCII table ( 32 - 127) 
+// - character input ( 'a', 'A' -- different)
+// - decimal with f  & without f
+// - negative values ( -42, -42.0f)
+// - +inf, -inf, +inff, -inff
+// - INT MAX, INT_MAX + 1
+// - empty string
+
+
 
