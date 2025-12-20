@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
 
+//static_cast = compile time cast
+// Casting - Only changes how the pointer/reference is viewed
 
 int main(int ac, char** av) {
 	if (ac == 2) {

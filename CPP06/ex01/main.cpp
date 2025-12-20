@@ -65,6 +65,14 @@ int main() {
     std::cout << "Corrupted pointer addr   : "
               << static_cast<void*>(corruptedPtr) << std::endl;
 
+
+    std::cout << "Original ptr (hex)       : 0x"
+              << std::hex
+              << std::setw(sizeof(uintptr_t) * 2)
+              << std::setfill('0')
+              << reinterpret_cast<uintptr_t>(originalPtr)
+              << std::dec << std::endl;
+
     std::cout << "Corrupted raw (hex)      : 0x"
               << std::hex
               << std::setw(sizeof(uintptr_t) * 2)

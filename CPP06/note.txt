@@ -1,0 +1,109 @@
+
+1️⃣ What is casting? (very simple)
+
+👉 Casting = putting a label on something
+
+The thing does NOT change.
+Only the label you use to talk about it changes.
+
+🧸 A teddy bear
+
+You can call it:
+
+“toy”
+
+“bear”
+
+“brown thing”
+
+Same toy.
+Different labels.
+
+➡️ That’s casting.
+
+------------------------------
+Objects and Labels in C++
+
+In C++:
+
+Object = the real thing in memory
+
+Type = the label
+
+
+-------------------------------
+static_cast — “Trust me 😎”
+🧠 How it works (kid version)
+
+👩‍🏫 Compiler asks:
+
+“Are you allowed to use this label?”
+
+If yes → OK
+If no → Error
+
+❌ It does NOT check the real thing
+
+🧸 Example
+Base* b = new Derived();
+Derived* d = static_cast<Derived*>(b);
+
+
+Compiler thinks:
+
+“Derived is a kind of Base, so OK 👍”
+
+✅ Works
+
+😱 Dangerous example
+Base* b = new Base();
+Derived* d = static_cast<Derived*>(b); // 😬
+
+
+Compiler says:
+
+“You say it’s a Derived? Fine.”
+
+But in reality:
+
+It’s NOT a Derived
+
+Program may crash
+
+
+
+------------------
+How it works (kid version)
+
+The program checks the toy itself.
+
+“Are you REALLY a teddy bear?”
+
+If yes → OK
+
+If no → Say “nope” safely
+
+🧸 Example
+Base* b = new Base();
+Derived* d = dynamic_cast<Derived*>(b);
+
+
+Program checks:
+
+“Is this actually a Derived?”
+
+❌ No → d == nullptr
+
+No crash. Safe. 😊
+------------------------------------
+
+Use static_cast when:
+
+✔ You are 100% sure
+✔ Simple number conversions
+✔ Upcasting (Derived → Base)
+
+Use dynamic_cast when:
+
+✔ You are not sure
+✔ Downcasting (Base → Derived)

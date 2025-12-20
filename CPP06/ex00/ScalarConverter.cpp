@@ -172,6 +172,8 @@ void ScalarConverter::convert(const std::string& literal) {
 		}
 
 		case INT: {
+
+			//convert string to long first to check range of int
 			std::stringstream ss(literal);
 			long val = 0;
 			ss >> val;
