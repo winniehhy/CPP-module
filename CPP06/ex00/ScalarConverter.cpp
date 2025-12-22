@@ -197,14 +197,13 @@ void ScalarConverter::convert(const std::string& literal) {
 			std::stringstream ss(literal);
 			long val = 0;
 			ss >> val;
-			// Check for conversion errors, out of range, or garbage after number
 			if (ss.fail() || !ss.eof()) {
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
 				std::cout << "float: impossible\n";
 				std::cout << "double: impossible\n";
 			} else {
-				// int out of range, but float/double may still be valid
+				// int out of range, but float/double  still be valid -- NEW ADDED
 				if (val > INT_MAX || val < INT_MIN) {
 					std::cout << "char: impossible\n";
 					std::cout << "int: impossible\n";
@@ -221,12 +220,12 @@ void ScalarConverter::convert(const std::string& literal) {
 		case FLOAT: {
 			float f = std::strtof(literal.c_str(), NULL);
 			double d = std::strtod(literal.c_str(), NULL);
-			// Check if float overflowed to infinity (but not pseudo-literals)
+			// Check if float overflowed to infinity (but not pseudo-literals) NEW ADDED
 			if (std::isinf(f) && !isPseudoLiteral(literal)) {
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
 				std::cout << "float: impossible\n";
-				// Double might still be valid
+				// Double might still be valid -- NEW ADDED
 				if (std::isinf(d) || std::isnan(d))
 					std::cout << "double: impossible\n";
 				else
@@ -240,7 +239,7 @@ void ScalarConverter::convert(const std::string& literal) {
 
 		case DOUBLE: {
 			double d = std::strtod(literal.c_str(), NULL);
-			// Check if double overflowed to infinity (but not pseudo-literals)
+			// Check if double overflowed to infinity (but not pseudo-literals) NEW ADDED
 			if ((std::isinf(d) || std::isnan(d)) && !isPseudoLiteral(literal)) {
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
