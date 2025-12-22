@@ -1,77 +1,220 @@
 #include "ScalarConverter.hpp"
 
-//static_cast = compile time cast
-// Casting - Only changes how the pointer/reference is viewed
+int main(int argc, char** argv) {
+    // Your friend's test cases
+    if (argc == 3 && std::string(argv[1]) == "pseudo" && std::string(argv[2]) == "test")
+    {
+        std::cout << "=== Pseudo Literal Test ===\n";
+        ScalarConverter::convert("nan"); 
+        std::cout << "\n";
+        ScalarConverter::convert("nanf"); 
+        std::cout << "\n";
+        ScalarConverter::convert("+inf"); 
+        std::cout << "\n";
+        ScalarConverter::convert("+inff"); 
+        std::cout << "\n";
+        ScalarConverter::convert("-inf"); 
+        std::cout << "\n";
+        ScalarConverter::convert("-inff"); 
+        std::cout << "\n";
+        ScalarConverter::convert("inf"); 
+        std::cout << "\n";
+        ScalarConverter::convert("inff"); 
+        std::cout << "\n";
+    }
+    else if (argc == 3 && std::string(argv[1]) == "char" && std::string(argv[2]) == "test")
+    {
+        std::cout << "=== Character Test (ASCII -125 to 127) ===\n";
+        for (int i = -125; i < 127; i++)
+        {
+            char c = static_cast<char>(i);
+            std::string str(1, c);
+            std::cout << "Testing char value: " << i << "\n";
+            ScalarConverter::convert(str);
+            std::cout << "\n";
+        }
+    }
+    else if (argc == 3 && std::string(argv[1]) == "int" && std::string(argv[2]) == "test") 
+    {
+        std::cout << "=== Integer Test ===\n";
+        
+        // Negative extended ASCII range
+        std::cout << "--- Testing negative extended ASCII (-100 to -10) ---\n";
+        for (int i = -100; i < -10; i++) {
+            char c = static_cast<char>(i);
+            std::string str(1, c);
+            std::cout << "Testing: " << i << "\n";
+            ScalarConverter::convert(str);
+            std::cout << "\n"; 
+        }
 
-int main(int ac, char** av) {
-	if (ac == 2) {
-		ScalarConverter::convert(av[1]);
-		return 0;
-	}
+        // Positive extended ASCII range
+        std::cout << "--- Testing positive extended ASCII (127 to 200) ---\n";
+        for (int i = 127; i < 200; i++) {
+            char c = i;
+            std::string str(1, c);
+            std::cout << "Testing: " << i << "\n";
+            ScalarConverter::convert(str);
+            std::cout << "\n"; 
+        }
 
-	
-	const char* tests[] = {
-		"0",
-		"+0",
-		"-0",
-		"nan",
-		"nanf",
-		"42.0f",
-		"0.0",
-		"0.0f",
-		"a",
-		"A",
-		"~",
-		"-42",
-		"+42",
-		"-4.2f",
-		"4.2",
-		"42.",
-		".5",
-		"+inf",
-		"-inf",
-		"inf",
-		"+inff",
-		"-inff",
-		"inff",
-		"2147483647",
-		"2147483648",
-		"127",
-		"128",
-		"abc",
-		"4.2ff",
-		"--1",
-		"",
-		0
-	};
-
-	for (int i = 0; tests[i] != 0; ++i) {
-		std::cout << "===== input: " << tests[i] << " =====" << std::endl;
-		ScalarConverter::convert(tests[i]);
-		std::cout << std::endl;
-	}
-
-	return 0;
+        // INT_MIN
+        std::cout << "--- Testing INT_MIN (-2147483648) ---\n";
+        ScalarConverter::convert("-2147483648");
+        std::cout << "\n";
+        
+        // INT_MAX
+        std::cout << "--- Testing INT_MAX (2147483647) ---\n";
+        ScalarConverter::convert("2147483647");
+        std::cout << "\n";
+        
+        // INT_MIN - 1 (overflow)
+        std::cout << "--- Testing INT_MIN - 1 (-2147483649) ---\n";
+        ScalarConverter::convert("-2147483649");
+        std::cout << "\n";
+        
+        // INT_MAX + 1 (overflow)
+        std::cout << "--- Testing INT_MAX + 1 (2147483648) ---\n";
+        ScalarConverter::convert("2147483648");
+        std::cout << "\n";
+    }
+    else if (argc == 3 && std::string(argv[1]) == "float" && std::string(argv[2]) == "test") 
+    {
+        std::cout << "=== Float Test ===\n";
+        
+        // Float overflow (exceeds FLT_MAX)
+        std::cout << "--- Testing float overflow (3.40282347e+39f) ---\n";
+        ScalarConverter::convert("3.40282347e+39f");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing negative float overflow (-3.40282347e+39f) ---\n";
+        ScalarConverter::convert("-3.40282347e+39f");
+        std::cout << "\n";
+        
+        // Float max value
+        std::cout << "--- Testing FLT_MAX (3.40282347e+38f) ---\n";
+        ScalarConverter::convert("3.40282347e+38f");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing -FLT_MAX (-3.40282347e+38f) ---\n";
+        ScalarConverter::convert("-3.40282347e+38f");
+        std::cout << "\n";
+        
+        // Large float values
+        std::cout << "--- Testing large float (21474836475.02345f) ---\n";
+        ScalarConverter::convert("21474836475.02345f");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing large float (214748364234.76543f) ---\n";
+        ScalarConverter::convert("214748364234.76543f");
+        std::cout << "\n";
+        
+        // Double range in float format
+        std::cout << "--- Testing double range as float (+1.7976931348623157e+308f) ---\n";
+        ScalarConverter::convert("+1.7976931348623157e+308f");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing double range as float (-1.7976931348623157e+308f) ---\n";
+        ScalarConverter::convert("-1.7976931348623157e+308f");
+        std::cout << "\n";
+    }
+    else if (argc == 3 && std::string(argv[1]) == "double" && std::string(argv[2]) == "test") 
+    {
+        std::cout << "=== Double Test ===\n";
+        
+        // Float overflow as double
+        std::cout << "--- Testing float overflow as double (3.40282347e+39) ---\n";
+        ScalarConverter::convert("3.40282347e+39");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing negative float overflow as double (-3.40282347e+39) ---\n";
+        ScalarConverter::convert("-3.40282347e+39");
+        std::cout << "\n";
+        
+        // Large double values
+        std::cout << "--- Testing large double (21474836475.02345) ---\n";
+        ScalarConverter::convert("21474836475.02345");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing large double (214748364234.76543) ---\n";
+        ScalarConverter::convert("214748364234.76543");
+        std::cout << "\n";
+        
+        // Double max value
+        std::cout << "--- Testing DBL_MAX (+1.7976931348623157e+308) ---\n";
+        ScalarConverter::convert("+1.7976931348623157e+308");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing -DBL_MAX (-1.7976931348623157e+308) ---\n";
+        ScalarConverter::convert("-1.7976931348623157e+308");
+        std::cout << "\n";
+        
+        // Double overflow
+        std::cout << "--- Testing double overflow (+1.7976931348623157e+309) ---\n";
+        ScalarConverter::convert("+1.7976931348623157e+309");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing double overflow (-1.7976931348623157e+309) ---\n";
+        ScalarConverter::convert("-1.7976931348623157e+309");
+        std::cout << "\n";
+    }
+    else if (argc == 3 && std::string(argv[1]) == "invalid" && std::string(argv[2]) == "test") 
+    {
+        std::cout << "=== Invalid Input Test ===\n";
+        
+        std::cout << "--- Testing invalid float (3.40282347fa) ---\n";
+        ScalarConverter::convert("3.40282347fa");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid number (-3.402823g47) ---\n";
+        ScalarConverter::convert("-3.402823g47");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid float (3.40282347f1234) ---\n";
+        ScalarConverter::convert("3.40282347f1234");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid scientific notation (-3.40282347e+1f) ---\n";
+        ScalarConverter::convert("-3.40282347e+1f");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid number (214748w36475.02345f) ---\n";
+        ScalarConverter::convert("214748w36475.02345f");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid number (214748364234.76543t) ---\n";
+        ScalarConverter::convert("214748364234.76543t");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid scientific notation (+1.797693y1348623157e+3) ---\n";
+        ScalarConverter::convert("+1.797693y1348623157e+3");
+        std::cout << "\n";
+        
+        std::cout << "--- Testing invalid exponent (-1.7976931348623157e+-3) ---\n";
+        ScalarConverter::convert("-1.7976931348623157e+-3");
+        std::cout << "\n";
+    }
+    else if (argc == 2)
+    {
+        // Single argument mode - convert the provided literal
+        ScalarConverter::convert(argv[1]);
+    }
+    else if (argc < 2)
+    {
+        std::cerr << "Usage: " << argv[0] << " <literal>\n";
+        std::cerr << "   or: " << argv[0] << " <test_type> test\n\n";
+        std::cerr << "Available test types:\n";
+        std::cerr << "  pseudo  - Test pseudo-literals (nan, inf, etc.)\n";
+        std::cerr << "  char    - Test character conversions\n";
+        std::cerr << "  int     - Test integer edge cases and overflow\n";
+        std::cerr << "  float   - Test float edge cases and overflow\n";
+        std::cerr << "  double  - Test double edge cases and overflow\n";
+        std::cerr << "  invalid - Test invalid inputs\n";
+    }
+    else
+    {
+        std::cerr << "Error: Too many arguments.\n";
+    }
+    
+    return 0;
 }
-
-// Check all handle
-// - ASCII table ( 32 - 127) 
-// - character input ( 'a', 'A' -- different)
-// - decimal with f  & without f
-// - negative values ( -42, -42.0f)
-// - +inf, -inf, +inff, -inff
-// - INT MAX, INT_MAX + 1 
-// - empty string
-
-
-// INT MAX = 2147483647
-// INT MIN = -2147483648
-// FLT MAX = 3.40282e+38
-// FLT MIN = 1.17549e-38
-// DBL MAX = 1.79769e+308
-// DBL MIN = 2.22507e-308
-
-/*
-Values less than FLT_MIN and DBL_MIN should NOT show 'impossible', because according to the IEEE 754 floating-point standard, these values can still be represented as denormalized (subnormal) numbers,
- which gradually lose precision as they approach zero. Only when a value overflows to infinity (exceeds FLT_MAX or DBL_MAX) should it be considered 'impossible' to represent in that type
-*/

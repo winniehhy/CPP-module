@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
 #include <cfloat>
+#include <cerrno>
+#include <climits>
 
 // OCF
 ScalarConverter::ScalarConverter() {}
@@ -20,7 +22,7 @@ bool ScalarConverter::isCharType(const std::string& str) {
 	// Handle char literals in format: 'c' 
 	if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
 		return std::isprint(str[1]);
-	// return false  for control characters ( tabls, newlines,etc)
+	// return false for control characters (tabs, newlines, etc)
 	return (str.length() == 1 && std::isprint(str[0]) && !std::isdigit(str[0]));
 }
 
@@ -193,43 +195,65 @@ void ScalarConverter::convert(const std::string& literal) {
 		}
 
 		case INT: {
-			//convert string to long first to check if the value fits within the range of an int before casting
-			std::stringstream ss(literal);
-			long val = 0;
-			ss >> val;
-			if (ss.fail() || !ss.eof()) {
+			// Convert string to long first to check if the value fits within the range of an int
+			errno = 0;
+			char* endptr = NULL;
+			long val = std::strtol(literal.c_str(), &endptr, 10);
+			
+			// Check for conversion errors
+			if (errno == ERANGE || *endptr != '\0') {
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
 				std::cout << "float: impossible\n";
 				std::cout << "double: impossible\n";
+			} else if (val > INT_MAX || val < INT_MIN) {
+				// Int out of range, but float/double might still be valid
+				std::cout << "char: impossible\n";
+				std::cout << "int: impossible\n";
+				float f = static_cast<float>(val);
+				double d = static_cast<double>(val);
+				
+				// Print float
+				std::cout << "float: ";
+				if (std::abs(f) >= 1000000.0f)
+					std::cout << std::scientific << std::setprecision(5) << f << "f\n";
+				else
+					std::cout << std::fixed << std::setprecision(1) << f << "f\n";
+				
+				// Print double
+				std::cout << "double: ";
+				if (std::abs(d) >= 1000000.0)
+					std::cout << std::scientific << std::setprecision(5) << d << "\n";
+				else
+					std::cout << std::fixed << std::setprecision(1) << d << "\n";
 			} else {
-				// int out of range, but float/double  still be valid -- NEW ADDED
-				if (val > INT_MAX || val < INT_MIN) {
-					std::cout << "char: impossible\n";
-					std::cout << "int: impossible\n";
-					std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(val) << "f\n";
-					std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(val) << "\n";
-				} else {
-					displayResults(static_cast<char>(val), static_cast<int>(val),
-								  static_cast<float>(val), static_cast<double>(val));
-				}
+				displayResults(static_cast<char>(val), static_cast<int>(val),
+							  static_cast<float>(val), static_cast<double>(val));
 			}
 			break;
 		}
 
 		case FLOAT: {
-			float f = std::strtof(literal.c_str(), NULL);
+			errno = 0;
+			char* endptr = NULL;
+			float f = std::strtof(literal.c_str(), &endptr);
 			double d = std::strtod(literal.c_str(), NULL);
-			// Check if float overflowed to infinity (but not pseudo-literals) NEW ADDED
+			
+			// Check if float overflowed to infinity (but not pseudo-literals)
 			if (std::isinf(f) && !isPseudoLiteral(literal)) {
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
 				std::cout << "float: impossible\n";
-				// Double might still be valid -- NEW ADDED
-				if (std::isinf(d) || std::isnan(d))
+				// Double might still be valid
+				if (std::isinf(d) || std::isnan(d)) {
 					std::cout << "double: impossible\n";
-				else
-					std::cout << "double: " << std::fixed << std::setprecision(1) << d << "\n";
+				} else {
+					std::cout << "double: ";
+					if (std::abs(d) < 0.1 || std::abs(d) >= 1000000.0)
+						std::cout << std::scientific << std::setprecision(5) << d << "\n";
+					else
+						std::cout << std::fixed << std::setprecision(1) << d << "\n";
+				}
 			} else {
 				displayResults(static_cast<char>(f), static_cast<int>(f),
 							  f, static_cast<double>(f));
@@ -238,8 +262,11 @@ void ScalarConverter::convert(const std::string& literal) {
 		}
 
 		case DOUBLE: {
-			double d = std::strtod(literal.c_str(), NULL);
-			// Check if double overflowed to infinity (but not pseudo-literals) NEW ADDED
+			errno = 0;
+			char* endptr = NULL;
+			double d = std::strtod(literal.c_str(), &endptr);
+			
+			// Check if double overflowed to infinity (but not pseudo-literals)
 			if ((std::isinf(d) || std::isnan(d)) && !isPseudoLiteral(literal)) {
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
