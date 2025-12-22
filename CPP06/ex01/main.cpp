@@ -26,7 +26,7 @@ int main() {
 
     std::cout << "Serialized value (hex)   : 0x"
               << std::hex
-              << std::setw(sizeof(uintptr_t) * 2)
+              << std::setw(sizeof(uintptr_t)* 2 )
               << std::setfill('0')
               << raw
               << std::dec << std::endl;

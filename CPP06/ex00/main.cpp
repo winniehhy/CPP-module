@@ -60,8 +60,18 @@ int main(int ac, char** av) {
 // - decimal with f  & without f
 // - negative values ( -42, -42.0f)
 // - +inf, -inf, +inff, -inff
-// - INT MAX, INT_MAX + 1
+// - INT MAX, INT_MAX + 1 
 // - empty string
 
 
+// INT MAX = 2147483647
+// INT MIN = -2147483648
+// FLT MAX = 3.40282e+38
+// FLT MIN = 1.17549e-38
+// DBL MAX = 1.79769e+308
+// DBL MIN = 2.22507e-308
 
+/*
+Values less than FLT_MIN and DBL_MIN should NOT show 'impossible', because according to the IEEE 754 floating-point standard, these values can still be represented as denormalized (subnormal) numbers,
+ which gradually lose precision as they approach zero. Only when a value overflows to infinity (exceeds FLT_MAX or DBL_MAX) should it be considered 'impossible' to represent in that type
+*/
