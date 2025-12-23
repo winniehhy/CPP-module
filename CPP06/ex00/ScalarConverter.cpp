@@ -33,22 +33,28 @@ bool ScalarConverter::isPseudoLiteral(const std::string& str) {
 }
 
 bool ScalarConverter::isIntType(const std::string& str) {
-	size_t i = 0;
-	
-	// Skip sign if present
-	if (!str.empty() && (str[0] == '+' || str[0] == '-'))
-		i = 1;
-	
-	// Must have at least one digit after sign
-	if (i >= str.length())
-		return false;
-	
-	// Check all remaining characters are digits
-	for (; i < str.length(); i++) {
-		if (!std::isdigit(str[i]))
-			return false;
-	}
-	return true;
+    size_t i = 0;
+    
+    // Skip sign if present
+    if (!str.empty() && (str[0] == '+' || str[0] == '-'))
+        i = 1;
+    
+    // Must have at least one digit after sign
+    if (i >= str.length())
+        return false;
+    
+    // Check all remaining characters are digits
+    for (; i < str.length(); i++) {
+        if (!std::isdigit(str[i]))
+            return false;
+    }
+    
+    // If it has more than 10 digits, it's likely too large for int
+    size_t digitCount = str.length() - (str[0] == '+' || str[0] == '-' ? 1 : 0);
+    if (digitCount > 10)
+        return false;
+    
+    return true;
 }
 
 bool ScalarConverter::isFloatType(const std::string& str) {
@@ -109,8 +115,9 @@ bool ScalarConverter::isDoubleType(const std::string& str) {
 }
 
 // Identify the type of literal
+// Identify the type of literal
 ScalarConverter::Type ScalarConverter::identifyType(const std::string& str) {
-	if (str.empty() || str[0] == '.')
+	if (str.empty())
 		return INVALID;
 	
 	if (isPseudoLiteral(str)) {
@@ -121,6 +128,9 @@ ScalarConverter::Type ScalarConverter::identifyType(const std::string& str) {
 	
 	if (isCharType(str))
 		return CHAR;
+
+	if (str[0] == '.')
+		return INVALID;
 	
 	if (isFloatType(str))
 		return FLOAT;
@@ -131,9 +141,26 @@ ScalarConverter::Type ScalarConverter::identifyType(const std::string& str) {
 	if (isIntType(str))
 		return INT;
 	
+	// Check if it's a very large integer (all digits, possibly with sign)
+	// These should be treated as doubles since they overflow int
+	size_t i = 0;
+	if (!str.empty() && (str[0] == '+' || str[0] == '-'))
+		i = 1;
+	
+	if (i < str.length()) {
+		bool allDigits = true;
+		for (size_t j = i; j < str.length(); j++) {
+			if (!std::isdigit(str[j])) {
+				allDigits = false;
+				break;
+			}
+		}
+		if (allDigits)
+			return DOUBLE;  
+	}
+	
 	return INVALID;
 }
-
 // Display all conversion results
 void ScalarConverter::displayResults(char c, int i, float f, double d) {
 	// Print char
@@ -266,15 +293,17 @@ void ScalarConverter::convert(const std::string& literal) {
 			char* endptr = NULL;
 			double d = std::strtod(literal.c_str(), &endptr);
 			
-			// Check if double overflowed to infinity (but not pseudo-literals)
-			if ((std::isinf(d) || std::isnan(d)) && !isPseudoLiteral(literal)) {
+			// Check for parsing errors (not for overflow to infinity)
+			if (*endptr != '\0' && *endptr != 'f') {
+				// Invalid characters in string
 				std::cout << "char: impossible\n";
 				std::cout << "int: impossible\n";
 				std::cout << "float: impossible\n";
 				std::cout << "double: impossible\n";
 			} else {
+				// Even if errno == ERANGE, infinity is a valid result
 				displayResults(static_cast<char>(d), static_cast<int>(d),
-							  static_cast<float>(d), d);
+							static_cast<float>(d), d);
 			}
 			break;
 		}

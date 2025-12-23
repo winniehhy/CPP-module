@@ -157,6 +157,11 @@ int main(int argc, char** argv) {
         std::cout << "--- Testing double overflow (-1.7976931348623157e+309) ---\n";
         ScalarConverter::convert("-1.7976931348623157e+309");
         std::cout << "\n";
+        
+        // Very large integer that overflows to +inf
+        std::cout << "--- Testing very large integer (280 digits) ---\n";
+        ScalarConverter::convert("578375827458627463756486058436538957635786248957880682404205625637584565829401568544569405684146840248349256945058735694835697658017864034620460846728956832956406440384720347284723804732847304738473849748374839470324702348732840732847230384738472384730274380473845084047234892346384458395");
+        std::cout << "\n";
     }
     else if (argc == 3 && std::string(argv[1]) == "invalid" && std::string(argv[2]) == "test") 
     {
