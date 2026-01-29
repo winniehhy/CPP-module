@@ -33,7 +33,7 @@ Array<T> & Array<T>::operator=(Array const & rhs) {
 		}
 
 		// Copy size and allocate new array
-		_size = rhs._size;
+		_size = rhs._size; //to make arr1 == arr2 (copied the VALUE from rhs._size)
 		if (_size > 0) {
 			_elements = new T[_size];
 			// Copy elements
@@ -78,3 +78,18 @@ unsigned int Array<T>::size() const {
 }
 
 #endif
+
+
+/*
+Array<int> arr1(3);      // Size 3, elements: [10, 20, 30]
+arr1[0] = 10;
+arr1[1] = 20;
+arr1[2] = 30;
+
+Array<int> arr2(5);      // Size 5, elements: [1, 2, 3, 4, 5]
+arr2[0] = 1;
+arr2[1] = 2;
+arr2[2] = 3;
+arr2[3] = 4;
+arr2[4] = 5;
+*/
