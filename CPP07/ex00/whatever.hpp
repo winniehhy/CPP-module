@@ -18,7 +18,7 @@ void swap(T& a, T& b) {
 	b = tmp;
 }
 
-
+// pass by const referece, so original variables are not modified ( read only)
 template <typename T>
 T const & min(T const & a, T const & b) {
 	return (a < b) ? a : b;

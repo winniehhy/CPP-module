@@ -5,7 +5,9 @@
 #include <cstddef>
 
 /*
-Class template :
+Difference betwee class template and function template:
+- function template : template for a single function
+- Class template : template for an entire class with member functions ( focus on object)
 
 
 */
