@@ -48,7 +48,7 @@ int main(void) {
 	// Test 6: Assignment operator
 	std::cout << "\n=== Test 6: Assignment operator ===" << std::endl;
 	Array<int> assignArray(3);
-	assignArray = intArray;
+	assignArray = intArray; // can test self assignment too
 	std::cout << "Assigned array values: ";
 	for (unsigned int i = 0; i < assignArray.size(); i++) {
 		std::cout << assignArray[i] << " ";
@@ -61,11 +61,11 @@ int main(void) {
 		std::cout << "Trying to access index 100..." << std::endl;
 		std::cout << intArray[100] << std::endl;
 	} catch (std::exception & e) {
-		std::cout << "Exception caught: Index out of bounds" << std::endl;
+		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
-	// Test 8: String array
-	std::cout << "\n=== Test 8: String array ===" << std::endl;
+	// Test 8: String array (complex type)
+	std::cout << "\n=== Test 8: String array (complex type) ===" << std::endl;
 	Array<std::string> strArray(3);
 	strArray[0] = "Hello";
 	strArray[1] = "World";
@@ -76,8 +76,8 @@ int main(void) {
 	}
 	std::cout << std::endl;
 
-	// Test 9: Double array
-	std::cout << "\n=== Test 9: Double array ===" << std::endl;
+	// Test 9: Double array (simple type)
+	std::cout << "\n=== Test 9: Double array (simple type) ===" << std::endl;
 	Array<double> doubleArray(4);
 	for (unsigned int i = 0; i < doubleArray.size(); i++) {
 		doubleArray[i] = (i + 1) * 1.5;
@@ -94,9 +94,20 @@ int main(void) {
 		std::cout << "Trying to access empty array[0]..." << std::endl;
 		std::cout << emptyArray[0] << std::endl;
 	} catch (std::exception & e) {
-		std::cout << "Exception caught: Empty array access" << std::endl;
+		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
-	std::cout << "\n=== All tests completed ===" << std::endl;
+	// cript operatopr: Const array (read-only)
+	std::cout << "\n=== Test 11: Const array (read-only) ===" << std::endl;
+	const Array<int> constArray(intArray);
+	std::cout << "Const array[0] (read): " << constArray[0] << std::endl;
+	std::cout << "Const array[2] (read): " << constArray[2] << std::endl;
+	std::cout << "Const array size: " << constArray.size() << std::endl;
+	// The following line will cause a compile-time error:
+	//constArray[0] = 999;  //  Error: cannot modify const
+
+	
+
+
 	return 0;
 }
