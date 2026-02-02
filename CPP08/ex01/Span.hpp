@@ -13,7 +13,7 @@ private:
 	Span();
 
 public:
-	// Orthodox Canonical Form
+	// OCF
 	Span(unsigned int N);
 	Span(Span const & src);
 	Span & operator=(Span const & rhs);
@@ -24,13 +24,26 @@ public:
 	int shortestSpan() const;
 	int longestSpan() const;
 
-	// Range of iterators
+	/*
+	// Adding 5 elements
+		sp.addRange(vec.begin(), vec.end());
+
+		// Behind the scenes:
+		count = 5                    // Calculate once
+		Check: size(0) + 5 > 10?     // Check once
+		Insert all 5 at once         // One bulk operation
+
+		// Result: 1 size check + 1 bulk insert
+	*/
 	template <typename Iterator>
-	void addRange(Iterator begin, Iterator end) {
-		while (begin != end) {
-			addNumber(*begin);
-			++begin;
-		}
+	void addRange(Iterator begin, Iterator end) 
+	{
+    size_t count = std::distance(begin, end);// Calculate total elements ONCE
+    if (_numbers.size() + count > _maxSize)    // Check capacity ONCE (not for each element)
+	{
+        throw FullException();
+    }
+    _numbers.insert(_numbers.end(), begin, end);     // Add all elements in ONE operation
 	}
 
 	// Getters

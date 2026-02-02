@@ -13,8 +13,8 @@ int main(void) {
 		sp.addNumber(17);
 		sp.addNumber(9);
 		sp.addNumber(11);
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
+		std::cout << sp.shortestSpan() << std::endl; // 11 - 9 = 2
+		std::cout << sp.longestSpan() << std::endl; // 17 - 3 = 14
 	}
 
 	// Test 1: Exception when adding too many numbers
@@ -53,17 +53,27 @@ int main(void) {
 	{
 		Span sp(10000);
 		std::srand(std::time(0));
-		
+	
 		for (int i = 0; i < 10000; i++) {
 			sp.addNumber(std::rand());
 		}
-		
-		std::cout << "Added 10,000 numbers" << std::endl;
-		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		std::cout << "Values: [random numbers between 0 and " << RAND_MAX << "]" << std::endl;
+		std::cout << "Total numbers added: " << sp.size() << std::endl;
+		std::cout << "\nCalculating spans..." << std::endl;
+		std::cout << "Shortest span: " << sp.shortestSpan() << " (smallest difference between any two numbers)" << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << " (max - min)" << std::endl;
 	}
 
 	// Test 5: Using range of iterators
+
+	/*
+	manual way
+	Span sp(100);
+	sp.addNumber(0);
+	sp.addNumber(10);
+	sp.addNumber(20);
+	// ... 97 more calls
+	*/
 	std::cout << "\n=== Test 5: Range of iterators ===" << std::endl;
 	{
 		std::vector<int> numbers;
@@ -73,11 +83,9 @@ int main(void) {
 
 		Span sp(100);
 		sp.addRange(numbers.begin(), numbers.end());
-		
-		std::cout << "Added 100 numbers using range" << std::endl;
-		std::cout << "Size: " << sp.size() << "/" << sp.maxSize() << std::endl;
-		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		std::cout << "Total numbers added: " << sp.size() << std::endl;
+		std::cout << "Shortest span: " << sp.shortestSpan() << " (difference between consecutive numbers like 10-0, 20-10, etc.)" << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << " (difference between 990-0)" << std::endl;
 	}
 
 	// Test 6: Negative numbers
@@ -108,35 +116,19 @@ int main(void) {
 		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	}
 
-	// Test 8: Copy constructor
-	std::cout << "\n=== Test 8: Copy constructor ===" << std::endl;
-	{
-		Span sp1(5);
-		sp1.addNumber(1);
-		sp1.addNumber(2);
-		sp1.addNumber(3);
-		
-		Span sp2(sp1);
-		sp2.addNumber(4);
-		
-		std::cout << "sp1 size: " << sp1.size() << std::endl;
-		std::cout << "sp2 size: " << sp2.size() << std::endl;
-	}
-
 	// Test 9: Large span with 20,000 numbers
 	std::cout << "\n=== Test 9: 20,000 numbers ===" << std::endl;
 	{
 		Span sp(20000);
 		
+		std::cout << "Adding numbers: ";
 		for (int i = 0; i < 20000; i++) {
 			sp.addNumber(i);
 		}
-		
-		std::cout << "Added 20,000 numbers" << std::endl;
-		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		std::cout << "Total numbers added: " << sp.size() << std::endl;
+		std::cout << "Shortest span: " << sp.shortestSpan()  << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << " (difference between 19999-0)" << std::endl;
 	}
 
-	std::cout << "\n=== All tests completed ===" << std::endl;
 	return 0;
 }

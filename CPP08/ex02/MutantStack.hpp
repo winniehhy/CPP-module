@@ -7,25 +7,31 @@
 template <typename T>
 class MutantStack : public std::stack<T> {
 public:
-	// Orthodox Canonical Form
+	// OCF
 	MutantStack() : std::stack<T>() {}
-	
 	MutantStack(MutantStack const & src) : std::stack<T>(src) {}
-	
 	MutantStack & operator=(MutantStack const & rhs) {
 		if (this != &rhs) {
 			std::stack<T>::operator=(rhs);
 		}
 		return *this;
 	}
-	
 	~MutantStack() {}
 
-	// Iterator types - using underlying container's iterators
-	typedef typename std::stack<T>::container_type::iterator iterator;
-	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
-	typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
-	typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
+	/*
+	typedef - Creating Nicknames for Types
+	typename - Telling the Compiler "This is a Type"
+
+	(std::stack<T>) ::container_type
+	std::stack doesn't store elements directly!
+	It wraps another container (by default std::deque<T>)
+	container_type is the type of that underlying container
+	
+	*/
+	typedef typename std::stack<T>::container_type::iterator iterator; // Can read and modify elements
+	typedef typename std::stack<T>::container_type::const_iterator const_iterator; // Read-Only Iterator
+	typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator; // Goes Backwards - Read/Write)
+	typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator; //  (Goes Backwards - Read-Only)
 
 	// Iterator functions
 	iterator begin() {

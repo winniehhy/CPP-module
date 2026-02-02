@@ -1,0 +1,106 @@
+1. Sequence Container ( Store Date in order)
+- std::vector
+- std::deque
+- std:: list
+
+===============================================================================
+COMPARISON TABLE: vector vs list vs deque
+===============================================================================
+Feature              | vector                  | list                    | deque
+---------------------|-------------------------|-------------------------|-------------------------
+Internal Structure   | Dynamic array           | Doubly-linked list      | Array of arrays
+                     | (contiguous memory)     | (nodes)                 | (chunks)
+---------------------|-------------------------|-------------------------|-------------------------
+Random Access        | ✅ Fast O(1)            | ❌ Slow O(n)            | ✅ Fast O(1)
+---------------------|-------------------------|-------------------------|-------------------------
+Insert at End        | ✅ Fast (amortized O(1))| ✅ Fast O(1)            | ✅ Fast O(1)
+---------------------|-------------------------|-------------------------|-------------------------
+Insert at Front      | ❌ Slow O(n)            | ✅ Fast O(1)            | ✅ Fast O(1)
+---------------------|-------------------------|-------------------------|-------------------------
+Insert in Middle     | ❌ Slow O(n)            | ✅ Fast O(1)*           | ❌ Slow O(n)
+===============================================================================
+*O(1) only if you already have iterator to the position
+===============================================================================
+
+===============================================================================
+HOW INSERT/REMOVE OPERATIONS WORK (and why their time complexity)
+===============================================================================
+
+📦 VECTOR (Contiguous Array: [1][2][3][4][5])
+────────────────────────────────────────────────────────────────────────────
+  ✅ INSERT/REMOVE at BACK - O(1)
+     Before: [1][2][3][4][5]
+     After:  [1][2][3][4][5][6]  ← Just add to next slot
+     Why O(1)? No shifting needed, just place at end
+
+  ❌ INSERT/REMOVE at FRONT - O(n)
+     Before: [1][2][3][4][5]
+     Step 1: [ ][1][2][3][4][5]     ← Shift ALL elements right
+     Step 2: [9][1][2][3][4][5]     ← Insert new element
+     Why O(n)? Must shift ALL n elements one position
+
+  ❌ INSERT/REMOVE in MIDDLE - O(n)
+     Before: [1][2][3][4][5]
+     Insert 9 at position 2:
+     Step 1: [1][2][ ][3][4][5]     ← Shift elements after position
+     Step 2: [1][2][9][3][4][5]     ← Insert element
+     Why O(n)? Must shift ~n/2 elements on average
+
+────────────────────────────────────────────────────────────────────────────
+📝 LIST (Doubly-Linked Nodes: [1]↔[2]↔[3]↔[4]↔[5])
+────────────────────────────────────────────────────────────────────────────
+  ✅ INSERT/REMOVE at FRONT - O(1)
+     Before: [1]↔[2]↔[3]
+     After:  [9]↔[1]↔[2]↔[3]       ← Just update 2 pointers
+     Why O(1)? Only reconnect pointers, no shifting
+
+  ✅ INSERT/REMOVE at BACK - O(1)
+     Before: [1]↔[2]↔[3]
+     After:  [1]↔[2]↔[3]↔[9]       ← Just update 2 pointers
+     Why O(1)? Only reconnect pointers, no shifting
+
+  ✅ INSERT/REMOVE in MIDDLE - O(1)*
+     *IF you already have iterator to position
+     Before: [1]↔[2]↔[3]↔[4]
+     Insert 9 between 2 and 3:
+     Step 1: [1]↔[2]  [9]  [3]↔[4] ← Create new node
+     Step 2: [1]↔[2]↔[9]↔[3]↔[4]   ← Reconnect 4 pointers
+     Why O(1)*? Just pointer updates, BUT finding position is O(n)
+
+────────────────────────────────────────────────────────────────────────────
+🔄 DEQUE (Array of Chunks: [[1][2]][[3][4]][[5][6]])
+────────────────────────────────────────────────────────────────────────────
+  ✅ INSERT/REMOVE at FRONT - O(1)
+     Can add new chunk at front without shifting
+     Before: [[1][2]][[3][4]]
+     After:  [[9][ ]][[1][2]][[3][4]]
+     Why O(1)? Uses multiple arrays, can grow on both ends
+
+  ✅ INSERT/REMOVE at BACK - O(1)
+     Can add new chunk at back without shifting
+     Before: [[1][2]][[3][4]]
+     After:  [[1][2]][[3][4]][[5][ ]]
+     Why O(1)? Uses multiple arrays, can grow on both ends
+
+  ❌ INSERT/REMOVE in MIDDLE - O(n)
+     Still needs to shift elements within chunks
+     Similar to vector but with chunk management overhead
+     Why O(n)? Must shift elements like vector
+
+===============================================================================
+
+O(1) - Constant Time
+Takes the same amount of time regardless of container size
+
+O(n) - Linear Time
+Time grows proportionally with container size (n = number of elements)
+
+O(1)* - Constant Time with Caveat
+The asterisk means "with a condition
+
+a. Vector O(1)
+-- Dynamic array
+-- Very fast to access by index
+-- Fast add/remove at the end (push_back)
+
+b. list ( double linked list)

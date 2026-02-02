@@ -1,5 +1,5 @@
 #include "Span.hpp"
-#include <limits>
+#include <limits> //std::numeric_limits
 #include <algorithm>
 
 Span::Span() : _maxSize(0) {}
@@ -37,7 +37,7 @@ int Span::shortestSpan() const {
 
 	int minSpan = std::numeric_limits<int>::max();
 	for (size_t i = 1; i < sorted.size(); i++) {
-		int span = sorted[i] - sorted[i - 1];
+		int span = sorted[i] - sorted[i - 1]; // current[index] - previous[index]
 		if (span < minSpan) {
 			minSpan = span;
 		}
@@ -49,7 +49,8 @@ int Span::longestSpan() const {
 	if (_numbers.size() < 2) {
 		throw NoSpanException();
 	}
-
+	//* = dereference iterator to get value
+	// without (*) = pointer to the element
 	int min = *std::min_element(_numbers.begin(), _numbers.end());
 	int max = *std::max_element(_numbers.begin(), _numbers.end());
 	return max - min;
