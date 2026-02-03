@@ -105,27 +105,47 @@ int main(void) {
 	}
 
 	// Test 5: deque with first element
-	std::cout << "\n=== Test 5: Deque - First element ===" << std::endl;
+	std::cout << "\n=== Test 5: Deque - Add & Remove ===" << std::endl;
 	std::deque<int> deq;
 	deq.push_back(100);
 	deq.push_back(200);
 	deq.push_back(300);
 
+	std::cout << "Original deque: ";
+	for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+	// Add element at front (deque can do this efficiently like list!)
+	deq.push_front(50);
+	std::cout << "After push_front(50): ";
+	for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+	// Add element at back
+	deq.push_back(400);
+	std::cout << "After push_back(400): ";
+	for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+	// Remove front and back (deque can do both efficiently!)
+	deq.pop_front();
+	deq.pop_back();
+	std::cout << "After pop_front() & pop_back(): ";
+	for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+	// Search for element
 	try {
-		std::deque<int>::iterator it = easyfind(deq, 100);
-		std::cout << "Found: " << *it << std::endl;
+		std::deque<int>::iterator it = easyfind(deq, 200);
+		std::cout << "Found element: " << *it << std::endl;
 	} catch (std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	// Test 6: deque with last element
-	std::cout << "\n=== Test 6: Deque - Last element ===" << std::endl;
-	try {
-		std::deque<int>::iterator it = easyfind(deq, 300);
-		std::cout << "Found: " << *it << std::endl;
-	} catch (std::exception& e) {
-		std::cout << "Error: " << e.what() << std::endl;
-	}
 
 	// Test 7: empty container
 	std::cout << "\n=== Test 7: Empty container ===" << std::endl;
@@ -165,7 +185,7 @@ int main(void) {
 	}
 
 
-	// Test 10: Time complexity comparison - Insert at front
+	// Test 11: Time complexity comparison - Insert at front
 	// std::cout << "\n=== Test 10: Time Complexity - Insert at Front ===" << std::endl;
 	// const int NUM_INSERTS = 10000;
 	
