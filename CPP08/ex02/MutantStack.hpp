@@ -26,6 +26,8 @@ public:
 	std::stack doesn't store elements directly!
 	It wraps another container (by default std::deque<T>)
 	container_type is the type of that underlying container
+
+	begin() , end() = is not from the std::stack. It is from the underlying container (std::deque by default)
 	
 	*/
 	typedef typename std::stack<T>::container_type::iterator iterator; // Can read and modify elements
@@ -33,7 +35,13 @@ public:
 	typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator; // Goes Backwards - Read/Write)
 	typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator; //  (Goes Backwards - Read-Only)
 
-	// Iterator functions
+	/*
+	**What they do:**
+	1. `this->c` - access the protected container inside `std::stack`
+	2. `.begin()` - call the container's `begin()` function
+	3. Return that iterator to the user
+	
+	*/
 	iterator begin() {
 		return this->c.begin();
 	}
