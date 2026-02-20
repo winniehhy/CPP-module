@@ -1,4 +1,3 @@
-
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
@@ -14,14 +13,8 @@
 #include <climits>
 
 // ANSI color codes for terminal output
-#define RED "\033[31m"
+#define RED   "\033[31m"
 #define RESET "\033[0m"
-
-// std::map container chosen for:
-// - Automatic sorting by date keys
-// - O(log n) search complexity 
-// - Unique key constraint (each date appears once)
-// - Easy lookup of closest earlier date using lower_bound
 
 class BitcoinExchange {
 public:
@@ -29,14 +22,15 @@ public:
     BitcoinExchange(const BitcoinExchange& other);
     BitcoinExchange& operator=(const BitcoinExchange& other);
     ~BitcoinExchange();
-    
+
+    // Entry point: open input file and evaluate each line
     void evaluateInputFile(const std::string& filename);
-    
+
     class DatabaseError : public std::exception {
     public:
         const char* what() const throw();
     };
-    
+
     class EmptyDatabase : public std::exception {
     public:
         const char* what() const throw();
@@ -44,18 +38,24 @@ public:
 
 private:
     std::map<std::string, float> _priceDatabase;
+
+    // Database
+    bool  loadDatabase(const std::string& filepath);
+    bool  parseDatabaseLine(const std::string& line, std::string& date, float& rate);
+
     
-    bool loadDatabase(const std::string& filepath);
-    bool parseDatabaseLine(const std::string& line, std::string& date, float& rate);
-    bool parseInputLine(const std::string& line, std::string& date, std::string& valueStr);
-    
+    bool  parseInputLine(const std::string& line, std::string& date, std::string& valueStr);
+    void  processAndPrint(const std::string& date, const std::string& valueStr);
+
+    // Rate lookup
     float lookupRate(const std::string& date) const;
-    
+
+    // Helpers
     std::string stripWhitespace(const std::string& str) const;
-    bool checkDateFormat(const std::string& date) const;
-    bool validateValueRange(const std::string& valueStr, float& value) const;
-    bool isNumericString(const std::string& str) const;
-    bool isLeapYear(int year) const;
+    bool        checkDateFormat(const std::string& date) const;
+    bool        validateValueRange(const std::string& valueStr, float& value) const;
+    bool        isNumericString(const std::string& str) const;
+    bool        isLeapYear(int year) const;
 };
 
 #endif
