@@ -66,7 +66,7 @@ T const & Array<T>::operator[](unsigned int index) const {
 template <typename T>
 T & Array<T>::operator[](unsigned int index) {
 	if (index >= _size) {
-		throw std::exception(); // out of bounds
+		throw std::out_of_range("Index out of bounds");
 	}
 	return _elements[index]; // return reference to element
 }

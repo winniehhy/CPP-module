@@ -70,6 +70,10 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int>& data) {
     data = mainChain;
 }
 
+
+//JacobStyle :  0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341 
+// The sequence tells us **which pend index to insert next**, and we go **backwards** from currJ down to prevJ+1.
+
 void PmergeMe::JacobInsert(std::vector<int>& mainChain, std::vector<int>& pendChain) {
     int pendSize = static_cast<int>(pendChain.size());
 
@@ -86,11 +90,16 @@ void PmergeMe::JacobInsert(std::vector<int>& mainChain, std::vector<int>& pendCh
 
     // Track each pend element's paired position in mainChain
     std::vector<size_t> pairedPos;
+
+    // apply sequence start with pairPos
     for (int i = 0; i < pendSize; ++i)
         pairedPos.push_back(static_cast<size_t>(i));
 
     int prevJ = -1;
 
+
+
+    // after determine main chain, pendchain, pairedPos, prevJ
     for (size_t k = 0; k < jacobSeq.size(); k++) {
         int currJ = jacobSeq[k];
 

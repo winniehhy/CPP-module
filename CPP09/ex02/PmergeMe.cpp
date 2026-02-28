@@ -29,10 +29,10 @@ void PmergeMe::displayPairs(const std::string& label, const std::vector<std::pai
 
 void PmergeMe::parseInput(int argc, char **argv) {
     for (int i = 1; i < argc; i++) {
-        std::string arg(argv[i]);
+        std::string arg(argv[i]); // convert each argument to string
         std::istringstream iss(arg);
-        char *endPtr;
-        long parsed = std::strtol(argv[i], &endPtr, 10);
+        char *endPtr; // point to the first character after the number.
+        long parsed = std::strtol(argv[i], &endPtr, 10); // convert the string to a long integer.
 
         if (*endPtr != '\0' || parsed > INT_MAX || parsed < 0)
             throw std::runtime_error("Error: Invalid input => " + arg);

@@ -118,7 +118,7 @@ int main(void) {
 
 	// Test 8: Single element
 	std::cout << "\nTest 8: Single element array" << std::endl;
-	int single[] = {999};
+	int single[] = {999, 777, 555};
 	::iter(single, 1, printOutput<int>);
 	std::cout << std::endl;
 

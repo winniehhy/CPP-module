@@ -11,39 +11,46 @@ void PmergeMe::runDequeSort() {
 
 void PmergeMe::createPairs(std::vector<std::pair<int, int> >& pairs, std::deque<int>& data) {
     size_t idx = 0;
-    while (idx < data.size() - 1) {
+    while (idx < data.size() - 1) //reads elements two at a time:
+    {
         int lo = data[idx];
         int hi = data[idx + 1];
         if (lo > hi)
-            std::swap(lo, hi);
+            std::swap(lo, hi); // sort low , high
         pairs.push_back(std::make_pair(lo, hi));
         idx += 2;
     }
 }
 
 void PmergeMe::fordJohnsonSortDeque(std::deque<int>& data) {
-    if (data.size() <= 1)
+    if (data.size() <= 1)  // base caswe: Stop recursion when only 1 element.
         return;
 
-    std::vector<std::pair<int, int> > pairList;
+    std::vector<std::pair<int, int> > pairList; // as a temporary container for storing pairs
     std::deque<int> mainChain;
     std::deque<int> pendChain;
 
     createPairs(pairList, data);
-    //displayPairs("Pairs created (deque)", pairList);
+    displayPairs("Pairs created (deque)", pairList);
 
     // Populate main and pend chains from pairs
     for (std::vector<std::pair<int, int> >::iterator it = pairList.begin(); it != pairList.end(); ++it) {
-        mainChain.push_back(it->second);
-        pendChain.push_back(it->first);
+        mainChain.push_back(it->second); // smaller element go pend chain
+        pendChain.push_back(it->first); // larger element go main 
+        
+        /* Example
+        Pairs: [(3,8), (1,5), (2,9)]
+        mainChain = [8, 5, 9]
+        pendChain = [3, 1, 2]
+        */
     }
-    // printStep("Main chain before recursion (deque)", mainChain);
-    // printStep("Pend chain before recursion (deque)", pendChain);
+    printStep("Main chain before recursion (deque)", mainChain);
+    printStep("Pend chain before recursion (deque)", pendChain);
 
     std::deque<int> savedMain = mainChain;
 
     fordJohnsonSortDeque(mainChain);
-    //printStep("Main chain after recursion (deque)", mainChain);
+    printStep("Main chain after recursion (deque)", mainChain);
 
     // Re-align pend chain to match sorted main order
     std::deque<int> alignedPend;
@@ -57,15 +64,15 @@ void PmergeMe::fordJohnsonSortDeque(std::deque<int>& data) {
         }
     }
     pendChain = alignedPend;
-    // printStep("Pend chain reordered (deque)", pendChain);
+    printStep("Pend chain reordered (deque)", pendChain);
 
-    // Append straggler if input had odd count
+    // leftover element becomes part of pendChain.
     if (data.size() % 2 != 0)
         pendChain.push_back(data.back());
-    // printStep("Pend chain after odd check (deque)", pendChain);
+     printStep("Pend chain after odd check (deque)", pendChain);
 
     JacobInsert(mainChain, pendChain);
-    // printStep("After JacobInsert (deque)", mainChain);
+    printStep("After JacobInsert (deque)", mainChain);
     data = mainChain;
 }
 
